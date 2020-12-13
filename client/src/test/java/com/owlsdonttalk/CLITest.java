@@ -12,7 +12,7 @@ public class CLITest {
 
     @Test
     void checkHelpGuideExistance(){
-        Path path = Paths.get("help.md");
+        Path path = Paths.get("/client/help.md");
         assertTrue(Files.exists(path));
     }
 
