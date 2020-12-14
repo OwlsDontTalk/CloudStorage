@@ -24,14 +24,14 @@ public class CLI {
 
     public void start() throws IOException {
         System.out.println("[START] Hello and welcome to CommandLineInterface");
-        System.out.println("Enter command or type -help to get it");
+        System.out.println("Enter command or type help to get it");
 
         String command;
 
         do{
             command = getNextCommand();
             executeCommand(command);
-        }while(!command.equals("--end"));
+        }while(!command.equals("end"));
 
     }
 
