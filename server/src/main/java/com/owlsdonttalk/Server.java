@@ -3,7 +3,15 @@ package com.owlsdonttalk;
 import com.owlsdonttalk.interfaces.Connectable;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 import java.sql.*;
+import java.util.Iterator;
 
 public class Server implements Runnable, Connectable {
 
@@ -11,11 +19,19 @@ public class Server implements Runnable, Connectable {
     private Statement statement;
     private ResultSet resultSet;
 
+
     @Override
     public void run() {
+        System.out.println("Server started.");
+        connect();
+        checkLogin("root", "12345");
 
     }
 
+
+    /***
+     *
+     */
     @Override
     public void connect() {
         try {
@@ -28,6 +44,13 @@ public class Server implements Runnable, Connectable {
         }
     }
 
+    /***
+     * Check if login is true.
+     * Password converts to md5hex(password)
+     * @param user
+     * @param password
+     * @return
+     */
     @Override
     public boolean checkLogin(String user, String password) {
         String password_hash = DigestUtils.md5Hex(password);

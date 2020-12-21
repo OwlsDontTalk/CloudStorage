@@ -1,15 +1,13 @@
 package com.owlsdonttalk;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import java.io.IOException;
 
 public class ServerLauncher {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Server server = new Server();
-        server.connect();
-        server.checkLogin("root", "12345");
-
+        server.run();
 
 
     }
