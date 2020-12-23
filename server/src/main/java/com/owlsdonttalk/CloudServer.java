@@ -1,31 +1,43 @@
 package com.owlsdonttalk;
 
+import com.owlsdonttalk.handlers.in.HandshakeHandler;
+import com.owlsdonttalk.handlers.out.ResponceToClientHandler;
 import com.owlsdonttalk.interfaces.Connectable;
 import org.apache.commons.codec.digest.DigestUtils;
-
-import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 import java.sql.*;
-import java.util.Iterator;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.*;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class Server implements Runnable, Connectable {
+public class CloudServer implements Connectable {
 
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
 
-
-    @Override
-    public void run() {
-        System.out.println("Server started.");
-        connect();
-        checkLogin("root", "12345");
-
+    public void run() throws Exception {
+        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        try {
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(new ChannelInitializer<io.netty.channel.socket.SocketChannel>() {
+                        @Override
+                        public void initChannel(SocketChannel ch) {
+                            ch.pipeline()
+                                    .addLast(new ResponceToClientHandler())
+                                    .addLast(new HandshakeHandler());
+                        }
+                    });
+            ChannelFuture f = b.bind(8189).sync();
+            f.channel().closeFuture().sync();
+        } finally {
+            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+        }
     }
 
 

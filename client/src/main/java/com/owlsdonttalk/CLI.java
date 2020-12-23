@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class CLI {
 
     final private String IP_ADPRESS = "localhost";
-    final private int PORT = 8080;
+    final private int PORT = 8189;
     private Scanner scanner = new Scanner(System.in);
     private String activeDirectory = "client/dir/";
     DataInputStream in;
@@ -24,14 +24,14 @@ public class CLI {
 
     public void start() throws IOException {
         System.out.println("[START] Hello and welcome to CommandLineInterface");
-        System.out.println("Enter command or type -help to get it");
+        System.out.println("Enter command or type help to get it");
 
         String command;
 
         do{
             command = getNextCommand();
             executeCommand(command);
-        }while(!command.equals("--end"));
+        }while(!command.equals("end"));
 
     }
 
@@ -65,6 +65,11 @@ public class CLI {
             socket = new Socket(IP_ADPRESS, PORT);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
+            out.write(new byte[]{115, 21, 31});
+
+            System.out.println(in.read());
+            in.close();
+            out.close();
         } catch (IOException e) {
             System.out.println("[ERROR] " + e.getClass() + ", cause: " + e.getMessage());
         }
