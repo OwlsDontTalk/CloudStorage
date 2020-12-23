@@ -24,9 +24,7 @@ public class HandshakeHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("1. Handshake Handler");
-        ByteBuf byteBuf = (ByteBuf) msg;
-        //byteBuf.writeBytes("hello!".getBytes());
+        System.out.println("Handshake Handler. Reversing pipeline");
         ctx.writeAndFlush("go away");
     }
 }

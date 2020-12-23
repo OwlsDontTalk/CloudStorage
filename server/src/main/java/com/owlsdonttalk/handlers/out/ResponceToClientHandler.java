@@ -12,12 +12,14 @@ public class ResponceToClientHandler extends ChannelOutboundHandlerAdapter {
 
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
-        System.out.println("ResponceToClientHandler. Converting string responce to byte[]");
+        System.out.println("ResponceToClientHandler. Converting string response to byte[] to end pipeline");
         String str = (String) msg;
-        byte[] arr = (str + " - responce!").getBytes();
+        System.out.println(str);
+        byte[] arr = (str + " - response!").getBytes();
+        //TODO wtf??
         ByteBuf buf = ctx.alloc().buffer(arr.length);
+
         buf.writeBytes(arr);
-        System.out.println(buf);
         ctx.writeAndFlush(buf);
     }
 
