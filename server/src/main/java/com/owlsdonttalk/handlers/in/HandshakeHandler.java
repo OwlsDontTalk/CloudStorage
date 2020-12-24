@@ -26,5 +26,6 @@ public class HandshakeHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("Handshake Handler. Reversing pipeline");
         ctx.writeAndFlush("go away");
+
     }
 }

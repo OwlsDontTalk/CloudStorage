@@ -17,6 +17,11 @@ public class CLITest {
     }
 
     @Test
+    void checkConfigFileExist(){
+        Path path = Paths.get("../config.properties");
+        assertTrue(Files.exists(path));
+    }
+
     void checkServerConnection(){
     }
 

@@ -1,32 +1,34 @@
 package com.owlsdonttalk;
 
-import org.apache.commons.io.IOUtils;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class CLI {
 
-    final private String IP_ADPRESS = "localhost";
-    final private int PORT = 8189;
+    private String serverIP;
+    private int serverPort = -1;
     private Scanner scanner = new Scanner(System.in);
     private String activeDirectory = "client/dir/";
-    //DataInputStream in;
-    //DataOutputStream out;
-    //Socket socket;
+    DataInputStream in;
+    DataOutputStream out;
+    Socket socket;
 
+    public static void main(String[] args) throws IOException {
+        CLI cli = new CLI();
+        cli.start();
+    }
 
     public void start() throws IOException {
+        setup();
         System.out.println("[START] Hello and welcome to CommandLineInterface");
         System.out.println("Enter command or type help to get it");
 
@@ -37,6 +39,17 @@ public class CLI {
             executeCommand(command);
         }while(!command.equals("end"));
 
+    }
+
+    private void setup() throws IOException {
+        System.out.println("[SYSTEM] Future connection config.");
+        File file = new File("config.properties");
+        Properties properties = new Properties();
+        properties.load(new FileReader(file));
+        this.serverIP = properties.getProperty("server.ip");
+        this.serverPort = Integer.valueOf(properties.getProperty("server.port"));
+
+        System.out.println("Server setup. IP: " + serverIP + " , PORT: " + serverPort);
     }
 
     private void executeCommand(String command) throws IOException {
@@ -68,22 +81,12 @@ public class CLI {
         try {
             Socket socket = new Socket("localhost", 8189);
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            Scanner in = new Scanner(socket.getInputStream());
-            out.write(new byte[]{115, 21});
-            String x = in.nextLine();
-            System.out.println("A: " + x);
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            out.write(new byte[]{115, 21, 31});
+            System.out.println(in.readByte());
             in.close();
             out.close();
             socket.close();
-//            socket = new Socket(IP_ADPRESS, PORT);
-//            in = new DataInputStream(socket.getInputStream());
-//            out = new DataOutputStream(socket.getOutputStream());
-//            out.write(new byte[]{115, 21, 31});
-//            //TODO read server response
-//
-//            System.out.println(in.readByte());
-//            in.close();
-//            out.close();
         } catch (IOException e) {
             System.out.println("[ERROR] " + e.getClass() + ", cause: " + e.getMessage());
         }

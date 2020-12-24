@@ -16,9 +16,8 @@ public class ResponceToClientHandler extends ChannelOutboundHandlerAdapter {
         String str = (String) msg;
         System.out.println(str);
         byte[] arr = (str + " - response!").getBytes();
-        //TODO wtf??
-        ByteBuf buf = ctx.alloc().buffer(arr.length);
 
+        ByteBuf buf = ctx.alloc().buffer(arr.length);
         buf.writeBytes(arr);
         ctx.writeAndFlush(buf);
     }
