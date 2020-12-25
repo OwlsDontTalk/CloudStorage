@@ -23,8 +23,25 @@ public class CLI {
     Socket socket;
 
     public static void main(String[] args) throws IOException {
-        CLI cli = new CLI();
-        cli.start();
+
+        try {
+            Socket socket = new Socket("localhost", 8189);
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+            Scanner in = new Scanner(socket.getInputStream());
+            out.write(new byte[]{115, 21, 31});
+            if(in.hasNext()){
+                System.out.println("wow");
+            };
+            //System.out.println("A: " + x);
+            in.close();
+            out.close();
+            socket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        CLI cli = new CLI();
+//        cli.start();
     }
 
     public void start() throws IOException {
@@ -36,7 +53,8 @@ public class CLI {
 
         do{
             command = getNextCommand();
-            executeCommand(command);
+//            executeCommand(command);
+            connectToServer();
         }while(!command.equals("end"));
 
     }
@@ -81,12 +99,14 @@ public class CLI {
         try {
             Socket socket = new Socket("localhost", 8189);
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            DataInputStream in = new DataInputStream(socket.getInputStream());
+            Scanner in = new Scanner(socket.getInputStream());
             out.write(new byte[]{115, 21, 31});
-            System.out.println(in.readByte());
-            in.close();
             out.close();
-            socket.close();
+            String x = in.nextLine();
+            System.out.println("A: " + x);
+            //in.close();
+            //out.close();
+            //socket.close();
         } catch (IOException e) {
             System.out.println("[ERROR] " + e.getClass() + ", cause: " + e.getMessage());
         }

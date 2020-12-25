@@ -1,20 +1,13 @@
 package com.owlsdonttalk;
 
-import com.owlsdonttalk.handlers.in.AuthHandler;
-import com.owlsdonttalk.handlers.in.HandshakeHandler;
-import com.owlsdonttalk.handlers.in.ProceedCommandHandler;
-import com.owlsdonttalk.handlers.out.ResponceToClientHandler;
-import com.owlsdonttalk.handlers.out.ReturnFileHandler;
+import com.owlsdonttalk.handlers.in.InboundAuthHandler;
+import com.owlsdonttalk.handlers.in.InboundHandshakeHandler;
+import com.owlsdonttalk.handlers.in.InboundProceedCommandHandler;
+import com.owlsdonttalk.handlers.out.OutboundResponceToClientHandler;
+
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-import java.util.Set;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -45,11 +38,12 @@ public class CloudServer{
                         @Override
                         public void initChannel(SocketChannel ch) {
                             ch.pipeline()
-                                    .addLast(new ResponceToClientHandler())
-                                    .addLast(new HandshakeHandler())
-                                    .addLast(new AuthHandler())
-                                    .addLast(new ProceedCommandHandler())
-                                    .addLast(new ReturnFileHandler());
+                                    .addLast(new OutboundResponceToClientHandler(),
+                                            new InboundHandshakeHandler(),
+                                            new InboundAuthHandler(),
+                                            new InboundProceedCommandHandler());
+//                                    .addLast(new ProceedCommandHandler())
+//                                    .addLast(new ReturnFileHandler());
                         }
                     });
             ChannelFuture f = b.bind(serverPort).sync();
@@ -60,13 +54,18 @@ public class CloudServer{
         }
     }
 
+    /***
+     * Read properties from config.properties
+     * @server.ip
+     * @server.port
+     * @throws IOException
+     */
     private void setup() throws IOException {
         File file = new File("config.properties");
         Properties properties = new Properties();
         properties.load(new FileReader(file));
         this.serverIP = properties.getProperty("server.ip");
         this.serverPort = Integer.valueOf(properties.getProperty("server.port"));
-
         System.out.println("Server setup. IP: " +  serverIP + " , PORT: " + serverPort);
     }
 }

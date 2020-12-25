@@ -1,20 +1,46 @@
 package com.owlsdonttalk.handlers.in;
 
 import com.owlsdonttalk.interfaces.Connectable;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.sql.*;
+import java.util.Arrays;
 
-public class AuthHandler  extends ChannelInboundHandlerAdapter implements Connectable {
+public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements Connectable {
 
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
 
-    /***
-     *
-     */
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("client connected");
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("client disconnected");
+    }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        System.out.println("AuthHandler");
+        ByteBuf buf = (ByteBuf) msg;
+
+        if (buf.readableBytes() < 3) {
+            buf.release();
+            ctx.writeAndFlush("hahahah");
+        }
+        byte[] data = new byte[3];
+        buf.readBytes(data);
+        buf.release();
+        System.out.println(Arrays.toString(data));
+        ctx.fireChannelRead(data);
+    }
+
     @Override
     public void connect() {
         try {
@@ -27,13 +53,6 @@ public class AuthHandler  extends ChannelInboundHandlerAdapter implements Connec
         }
     }
 
-    /***
-     * Check if login is true.
-     * Password converts to md5hex(password)
-     * @param user
-     * @param password
-     * @return
-     */
     @Override
     public boolean checkLogin(String user, String password) {
         String password_hash = DigestUtils.md5Hex(password);
