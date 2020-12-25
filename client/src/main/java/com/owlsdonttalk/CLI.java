@@ -11,6 +11,9 @@ import java.util.Scanner;
 
 public class CLI {
 
+
+    //TODO перенести методы в NETTY CLI
+    //TODO учу сервак смотреть первый байт и если это С то работать со стрингой, остальное подумать
     private String serverIP;
     private int serverPort = -1;
     private Scanner scanner = new Scanner(System.in);
@@ -48,8 +51,7 @@ public class CLI {
 
         do{
             command = getNextCommand();
-//            executeCommand(command);
-            connectToServer();
+            executeCommand(command);
         }while(!command.equals("end"));
 
     }

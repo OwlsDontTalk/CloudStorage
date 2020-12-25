@@ -2,11 +2,11 @@ package com.owlsdonttalk.handlers;
 
 import com.owlsdonttalk.RequestData;
 import com.owlsdonttalk.ResponseData;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.concurrent.EventExecutorGroup;
+import java.nio.charset.Charset;
 
 public class ClientHandler extends ChannelInboundHandlerAdapter {
 
@@ -22,7 +22,10 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
-        System.out.println((String) msg);
+        ByteBuf buf = (ByteBuf) msg;
+        String s = buf.toString(Charset.defaultCharset());
+
+        System.out.println(s);
         ctx.close();
     }
 }

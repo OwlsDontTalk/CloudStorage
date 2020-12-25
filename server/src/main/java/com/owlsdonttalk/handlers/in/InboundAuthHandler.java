@@ -6,6 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.nio.charset.Charset;
 import java.sql.*;
 import java.util.Arrays;
 
@@ -29,10 +30,11 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("AuthHandler");
         ByteBuf buf = (ByteBuf) msg;
-        
 
+        byte command = buf.readByte();
+        System.out.println(command);
 
-        System.out.println((String)msg);
+        System.out.println(buf.toString(Charset.defaultCharset()));
         if (buf.readableBytes() < 3) {
             buf.release();
             ctx.writeAndFlush("hahahah");
