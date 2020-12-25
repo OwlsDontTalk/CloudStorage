@@ -2,12 +2,9 @@ package com.owlsdonttalk;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
@@ -29,9 +26,7 @@ public class CLI {
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             Scanner in = new Scanner(socket.getInputStream());
             out.write(new byte[]{115, 21, 31});
-            if(in.hasNext()){
-                System.out.println("wow");
-            };
+            System.out.println(in.nextLine());
             //System.out.println("A: " + x);
             in.close();
             out.close();

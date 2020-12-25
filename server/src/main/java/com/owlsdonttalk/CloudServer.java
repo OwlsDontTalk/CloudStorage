@@ -38,7 +38,8 @@ public class CloudServer{
                         @Override
                         public void initChannel(SocketChannel ch) {
                             ch.pipeline()
-                                    .addLast(new OutboundResponceToClientHandler(),
+                                    .addLast(
+                                            new OutboundResponceToClientHandler(),
                                             new InboundHandshakeHandler(),
                                             new InboundAuthHandler(),
                                             new InboundProceedCommandHandler());

@@ -29,7 +29,10 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("AuthHandler");
         ByteBuf buf = (ByteBuf) msg;
+        
 
+
+        System.out.println((String)msg);
         if (buf.readableBytes() < 3) {
             buf.release();
             ctx.writeAndFlush("hahahah");

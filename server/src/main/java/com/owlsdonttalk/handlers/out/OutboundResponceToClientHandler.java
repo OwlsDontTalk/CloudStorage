@@ -18,7 +18,10 @@ public class OutboundResponceToClientHandler extends ChannelOutboundHandlerAdapt
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
         System.out.println("Outbound Responce To Client Handler");
-        ctx.writeAndFlush(msg);
+        String str = (String) msg;
+        byte[] arr = (str + " StringToByteBufHandler2 ").getBytes();
+        ByteBuf buf = ctx.alloc().buffer(arr.length);
+        buf.writeBytes(arr);
         System.out.println("by");
     }
 
