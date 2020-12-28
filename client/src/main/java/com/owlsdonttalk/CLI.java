@@ -15,7 +15,7 @@ public class CLI {
     //TODO перенести методы в NETTY CLI
     //TODO учу сервак смотреть первый байт и если это С то работать со стрингой, остальное подумать
     private String serverIP;
-    private int serverPort = -1;
+    private int serverPort;
     private Scanner scanner = new Scanner(System.in);
     private String activeDirectory = "client/dir/";
     DataInputStream in;
@@ -56,15 +56,18 @@ public class CLI {
 
     }
 
-    private void setup() throws IOException {
+    private void setup()  {
         System.out.println("[SYSTEM] Future connection config.");
         File file = new File("config.properties");
         Properties properties = new Properties();
-        properties.load(new FileReader(file));
-        this.serverIP = properties.getProperty("server.ip");
-        this.serverPort = Integer.valueOf(properties.getProperty("server.port"));
-
-        System.out.println("Server setup. IP: " + serverIP + " , PORT: " + serverPort);
+        try {
+            properties.load(new FileReader(file));
+            this.serverIP = properties.getProperty("server.ip");
+            this.serverPort = Integer.valueOf(properties.getProperty("server.port"));
+            System.out.println("Server setup. IP: " + serverIP + " , PORT: " + serverPort);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void executeCommand(String command) throws IOException {
