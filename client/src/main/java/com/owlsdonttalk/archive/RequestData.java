@@ -1,4 +1,4 @@
-package com.owlsdonttalk;
+package com.owlsdonttalk.archive;
 
 public class RequestData {
     private int intValue;

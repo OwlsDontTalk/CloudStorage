@@ -5,7 +5,6 @@ import com.owlsdonttalk.handlers.in.InboundHandshakeHandler;
 import com.owlsdonttalk.handlers.in.InboundProceedCommandHandler;
 import com.owlsdonttalk.handlers.out.OutboundResponceToClientHandler;
 
-
 import java.io.*;
 import java.util.Properties;
 import io.netty.bootstrap.ServerBootstrap;
@@ -14,7 +13,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class CloudServer{
+public class CloudServer {
 
     //TODO implement list of active sessions (session + user combo)
     String serverIP = "";
@@ -43,8 +42,6 @@ public class CloudServer{
                                             new InboundHandshakeHandler(),
                                             new InboundAuthHandler(),
                                             new InboundProceedCommandHandler());
-//                                    .addLast(new ProceedCommandHandler())
-//                                    .addLast(new ReturnFileHandler());
                         }
                     });
             ChannelFuture f = b.bind(serverPort).sync();
