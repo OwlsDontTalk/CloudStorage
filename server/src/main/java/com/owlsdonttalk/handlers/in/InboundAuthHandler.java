@@ -5,16 +5,22 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.FileUtils;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
-import java.util.Arrays;
 
 public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements Connectable {
 
+    private String activeDirectory = "server/";
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
+    Long receivedFileLength = 0L;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -31,6 +37,7 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
         System.out.println("[HANDLER] AuthHandler");
         ByteBuf buf = (ByteBuf) msg;
         byte command = buf.readByte();
+        System.out.println("[RECIVED] commands: " + (char)command);
 
         if((char)command == 's'){
             System.out.println("String recived, working with commands");
@@ -39,7 +46,7 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
             if(commandsArray[0].equals("auth")){
                 System.out.println("Trying to auth user " + commandsArray[1] + " with password " + commandsArray[2]);
                 if(authUser(commandsArray[1], commandsArray[2])){
-                    System.out.println("auth success, flushing message to clinet");
+                    System.out.println("auth success, flushing message to clienet");
                     ctx.fireChannelRead("auth success");
                 } else {
                     ctx.fireChannelRead("auth fail");
@@ -50,21 +57,40 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
         }
         if((char)command == 'f'){
             System.out.println("File expected, working with file");
+
+            int filnameLength = buf.readInt();
+            System.out.println("[RECEIVED] filename length: " + filnameLength);
+            byte[] filename = new byte[filnameLength];
+            buf.readBytes(filename);
+            String serverFileName = new String(filename, StandardCharsets.UTF_8);
+            System.out.println("[RECEIVED] filename: " + serverFileName);
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(serverFileName));
+
+            byte[] allBytes = new byte[buf.readableBytes()];
+            System.out.println("[RECEIVED] file size: " + buf.readableBytes());
+
+            Long fileLength = buf.readLong();
+            System.out.println("[RECEIVED]: File length received - " + fileLength);
+
+            //TODO доделать получение файла
+            //buf.readBytes(allBytes);
+
+            while (buf.readableBytes() > 0) {
+                out.write(buf.readByte());
+                receivedFileLength++;
+
+                if (fileLength == receivedFileLength) {
+                    System.out.println("File received");
+                    out.close();
+                    break;
+                } else {
+                    System.out.println(123);
+                }
+            }
+
+            //;
+            //FileUtils.writeByteArrayToFile(new File(activeDirectory+serverFileName), allBytes);
         }
-
-
-       // System.out.println(buf.toString(Charset.defaultCharset()));
-//        if (buf.readableBytes() < 3) {
-//            buf.release();
-//            ctx.writeAndFlush("cannot decide what to do");
-//        }
-
-        byte[] data = new byte[3];
-        buf.readBytes(data);
-        buf.release();
-
-//        System.out.println(Arrays.toString(data));
-      //  ctx.fireChannelRead(data);
     }
 
     private boolean authUser(String s, String s1) {

@@ -1,14 +1,14 @@
 package com.owlsdonttalk.handlers;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.buffer.ByteBufAllocator;
+import io.netty.channel.*;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -98,9 +98,44 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             case ("remove"):
                 removeLocalFile(command[1]);
                 break;
+            case ("send"):
+                sendFileToServer(command[1], ctx);
+                break;
             default:
                 System.out.println("[SYSTEM] Command not found, try again.");
         }
+    }
+
+    private void sendFileToServer(String filename, ChannelHandlerContext ctx) throws IOException {
+        Path path = Paths.get(activeDirectory + filename);
+        FileRegion region = new DefaultFileRegion(path.toFile(), 0, Files.size(path));
+
+        ByteBuf buf = null;
+        byte[] allBytes = Files.readAllBytes(path);
+
+        //send F to tell server it shoud expect file
+        buf = ByteBufAllocator.DEFAULT.directBuffer(1);
+        buf.writeByte(102);
+        ctx.writeAndFlush(buf);
+
+        //send filenameLength to server
+        byte[] filenameBytes = path.getFileName().toString().getBytes(StandardCharsets.UTF_8);
+        buf = ByteBufAllocator.DEFAULT.directBuffer(4);
+        buf.writeInt(filenameBytes.length);
+        ctx.writeAndFlush(buf);
+
+        //send filename to server
+        buf = ByteBufAllocator.DEFAULT.directBuffer(filenameBytes.length);
+        buf.writeBytes(filenameBytes);
+        ctx.writeAndFlush(buf);
+
+        //send fileSize to server
+        buf = ByteBufAllocator.DEFAULT.directBuffer(8);
+        buf.writeLong(Files.size(path));
+        ctx.writeAndFlush(buf);
+
+        //send file to server
+        ctx.writeAndFlush(region);
     }
 
     private void connectToServer(String login, String password, ChannelHandlerContext ctx) {

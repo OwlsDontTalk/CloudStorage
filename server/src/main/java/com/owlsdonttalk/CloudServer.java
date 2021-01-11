@@ -14,7 +14,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class CloudServer {
 
-    //TODO implement list of active sessions (session + user combo)
     String serverIP = "";
     int serverPort = -1;
 
