@@ -30,20 +30,46 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("AuthHandler");
         ByteBuf buf = (ByteBuf) msg;
-
         byte command = buf.readByte();
-        System.out.println(command);
 
-        System.out.println(buf.toString(Charset.defaultCharset()));
-        if (buf.readableBytes() < 3) {
-            buf.release();
-            ctx.writeAndFlush("hahahah");
+        if((char)command == 's'){
+            System.out.println("String recived, working with commands");
+            String[] commandsArray = buf.toString(Charset.defaultCharset()).split(" ");
+
+            if(commandsArray[0].equals("auth")){
+                System.out.println("Trying to auth user " + commandsArray[1] + " with password " + commandsArray[2]);
+                if(authUser(commandsArray[1], commandsArray[2])){
+                    System.out.println("auth success, flushing message to clinet");
+                    ctx.fireChannelRead("auth success");
+                } else {
+                    ctx.fireChannelRead("auth fail");
+                }
+            } else {
+                System.out.println("execute command.. " + commandsArray[0]);
+            }
         }
+        if((char)command == 'f'){
+            System.out.println("File expected, working with file");
+        }
+
+
+       // System.out.println(buf.toString(Charset.defaultCharset()));
+//        if (buf.readableBytes() < 3) {
+//            buf.release();
+//            ctx.writeAndFlush("cannot decide what to do");
+//        }
+
         byte[] data = new byte[3];
         buf.readBytes(data);
         buf.release();
-        System.out.println(Arrays.toString(data));
-        ctx.fireChannelRead(data);
+
+//        System.out.println(Arrays.toString(data));
+      //  ctx.fireChannelRead(data);
+    }
+
+    private boolean authUser(String s, String s1) {
+        connect();
+        return checkLogin(s, s1);
     }
 
     @Override

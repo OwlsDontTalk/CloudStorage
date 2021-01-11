@@ -1,20 +1,18 @@
 package com.owlsdonttalk.handlers;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
 public class ClientHandler extends ChannelInboundHandlerAdapter {
@@ -30,11 +28,11 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         System.out.println("Enter command or type help to get it");
         String[] command;
 
-        do{
+        do {
             command = getNextCommand();
             executeCommand(command, ctx);
-        }while(!command[0].equals("end"));
-//        ChannelFuture future = ctx.writeAndFlush(msg);
+        } while (!command[0].equals("end"));
+//       ChannelFuture future = ctx.writeAndFlush("hey");
     }
 
     @Override
@@ -46,7 +44,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void executeCommand(String[] command, ChannelHandlerContext ctx) throws IOException {
-            switch (command[0]){
+        switch (command[0]) {
             case ("help"):
                 printHelp();
                 break;
@@ -60,16 +58,18 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
                 changeFolder(command[1]);
                 break;
             case ("rename"):
-                if(command.length >= 3){
+                if (command.length >= 3) {
                     renameLocalFile(command[1], command[2]);
                 } else {
                     System.out.println("command structure: rename [file] [new name]");
                 }
-                //ctx.writeAndFlush(command);
                 break;
             case ("connect"):
-                connectToServer();
-                ctx.writeAndFlush(command[0]);
+                if (command.length >= 3) {
+                    connectToServer(command[1], command[2], ctx);
+                } else {
+                    System.out.println("command structure: connect [login] [password]");
+                }
                 break;
             case ("remove"):
                 removeLocalFile(command[1]);
@@ -79,19 +79,20 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    private void connectToServer() {
+    private void connectToServer(String login, String password, ChannelHandlerContext ctx) {
+        ctx.writeAndFlush("sauth " + login + " " + password);
     }
 
     private void renameLocalFile(String file, String newName) throws IOException {
         file = activeDirectory + file;
         newName = activeDirectory + newName;
 
-        if(!Files.exists(Path.of(file))){
+        if (!Files.exists(Path.of(file))) {
             System.out.println("no such file " + file);
             return;
         }
 
-        if(Files.exists(Path.of(newName))){
+        if (Files.exists(Path.of(newName))) {
             System.out.println("file " + newName + " already exist");
             return;
         }
@@ -102,7 +103,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void removeLocalFile(String s) {
-        Path path0 = Path.of(activeDirectory + "/"+ s);
+        Path path0 = Path.of(activeDirectory + "/" + s);
         if (Files.exists(path0)) {
             try {
                 System.out.println(path0);
@@ -123,7 +124,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     private void changeFolder(String directory) {
         Path path0 = Path.of(activeDirectory + directory);
 
-        if(Files.exists(path0)){
+        if (Files.exists(path0)) {
             System.out.println("new directory: " + directory);
             activeDirectory = activeDirectory + directory;
         } else {
@@ -156,11 +157,11 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
             lines = Files.readAllLines(path);
         } catch (IOException e) {
-            System.out.println("[ERROR] " + e.getMessage() );
+            System.out.println("[ERROR] " + e.getMessage());
         }
 
-        if(lines != null){
-            for (String s: lines) {
+        if (lines != null) {
+            for (String s : lines) {
                 System.out.println(s);
             }
         }

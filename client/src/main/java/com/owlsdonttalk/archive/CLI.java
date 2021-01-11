@@ -11,9 +11,7 @@ import java.util.Scanner;
 
 public class CLI {
 
-
-    //TODO перенести методы в NETTY CLI
-    //TODO учу сервак смотреть первый байт и если это С то работать со стрингой, остальное подумать
+    //TODO учу сервак смотреть первый байт и если это S то работать со стрингой - F - как с файлом
     private String serverIP;
     private int serverPort;
     private Scanner scanner = new Scanner(System.in);

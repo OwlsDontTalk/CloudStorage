@@ -22,7 +22,6 @@ public class OutboundResponceToClientHandler extends ChannelOutboundHandlerAdapt
         byte[] arr = (str + " StringToByteBufHandler2 ").getBytes();
         ByteBuf buf = ctx.alloc().buffer(arr.length);
         buf.writeBytes(arr);
-        System.out.println("by");
     }
 
 

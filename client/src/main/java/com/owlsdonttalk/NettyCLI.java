@@ -8,6 +8,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+
 import java.io.*;
 import java.net.ConnectException;
 import java.util.Properties;
@@ -57,7 +58,7 @@ public class NettyCLI {
      * @server.port
      * @throws IOException
      */
-    private void setup()  {
+    private void setup() {
         System.out.println("[SYSTEM] Future connection config.");
         File file = new File("config.properties");
         Properties properties = new Properties();

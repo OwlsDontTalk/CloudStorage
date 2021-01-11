@@ -1,7 +1,6 @@
 package com.owlsdonttalk;
 
 import com.owlsdonttalk.handlers.in.InboundAuthHandler;
-import com.owlsdonttalk.handlers.in.InboundHandshakeHandler;
 import com.owlsdonttalk.handlers.in.InboundProceedCommandHandler;
 import com.owlsdonttalk.handlers.out.OutboundResponceToClientHandler;
 
@@ -39,7 +38,6 @@ public class CloudServer {
                             ch.pipeline()
                                     .addLast(
                                             new OutboundResponceToClientHandler(),
-                                            new InboundHandshakeHandler(),
                                             new InboundAuthHandler(),
                                             new InboundProceedCommandHandler());
                         }
