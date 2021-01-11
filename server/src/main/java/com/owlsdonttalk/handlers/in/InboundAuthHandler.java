@@ -28,7 +28,7 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("AuthHandler");
+        System.out.println("[HANDLER] AuthHandler");
         ByteBuf buf = (ByteBuf) msg;
         byte command = buf.readByte();
 

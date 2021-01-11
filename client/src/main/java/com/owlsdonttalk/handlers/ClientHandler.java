@@ -32,15 +32,39 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             command = getNextCommand();
             executeCommand(command, ctx);
         } while (!command[0].equals("end"));
-//       ChannelFuture future = ctx.writeAndFlush("hey");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        System.out.println(123);
         ByteBuf buf = (ByteBuf) msg;
         String s = buf.toString(Charset.defaultCharset());
         System.out.println(s);
         ctx.close();
+    }
+
+    private void printHelp() {
+        System.out.println("[SYSTEM] Printing help file.");
+        List<String> lines = null;
+
+        try {
+            Path path = Paths.get("client/help.md");
+
+            lines = Files.readAllLines(path);
+        } catch (IOException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+
+        if (lines != null) {
+            for (String s : lines) {
+                System.out.println(s);
+            }
+        }
+    }
+
+    private String[] getNextCommand() {
+        String[] command = scanner.nextLine().split(" ");
+        return command;
     }
 
     private void executeCommand(String[] command, ChannelHandlerContext ctx) throws IOException {
@@ -116,11 +140,6 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    private String[] getNextCommand() {
-        String[] command = scanner.nextLine().split(" ");
-        return command;
-    }
-
     private void changeFolder(String directory) {
         Path path0 = Path.of(activeDirectory + directory);
 
@@ -144,25 +163,6 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
                 System.out.println("./" + listOfFile.getName());
             } else if (listOfFile.isDirectory()) {
                 System.out.println("." + listOfFile.getName());
-            }
-        }
-    }
-
-    private void printHelp() {
-        System.out.println("[SYSTEM] Printing help file.");
-        List<String> lines = null;
-
-        try {
-            Path path = Paths.get("client/help.md");
-
-            lines = Files.readAllLines(path);
-        } catch (IOException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-        }
-
-        if (lines != null) {
-            for (String s : lines) {
-                System.out.println(s);
             }
         }
     }

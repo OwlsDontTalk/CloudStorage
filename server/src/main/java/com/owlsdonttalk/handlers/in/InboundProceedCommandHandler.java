@@ -7,7 +7,7 @@ public class InboundProceedCommandHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("Command Proceed Handler");
+        System.out.println("[HANDLER] Command Proceed Handler");
         ctx.writeAndFlush(msg);
 
     }
