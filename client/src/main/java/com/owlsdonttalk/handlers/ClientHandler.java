@@ -9,9 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -108,33 +106,37 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     private void sendFileToServer(String filename, ChannelHandlerContext ctx) throws IOException {
         Path path = Paths.get(activeDirectory + filename);
+        if (!Files.exists(path)) {
+            System.out.println("no such local file " + filename);
+            return;
+        }
         FileRegion region = new DefaultFileRegion(path.toFile(), 0, Files.size(path));
 
         ByteBuf buf = null;
         byte[] allBytes = Files.readAllBytes(path);
 
-        //send F to tell server it shoud expect file
+        //1. send F to tell server it shoud expect file
         buf = ByteBufAllocator.DEFAULT.directBuffer(1);
         buf.writeByte(102);
         ctx.writeAndFlush(buf);
 
-        //send filenameLength to server
+        //2. send filenameLength to server
         byte[] filenameBytes = path.getFileName().toString().getBytes(StandardCharsets.UTF_8);
         buf = ByteBufAllocator.DEFAULT.directBuffer(4);
         buf.writeInt(filenameBytes.length);
         ctx.writeAndFlush(buf);
 
-        //send filename to server
+        //3. send filename to server
         buf = ByteBufAllocator.DEFAULT.directBuffer(filenameBytes.length);
         buf.writeBytes(filenameBytes);
         ctx.writeAndFlush(buf);
 
-        //send fileSize to server
+        //4. send fileSize to server
         buf = ByteBufAllocator.DEFAULT.directBuffer(8);
         buf.writeLong(Files.size(path));
         ctx.writeAndFlush(buf);
 
-        //send file to server
+        //5. send file to server
         ctx.writeAndFlush(region);
     }
 
@@ -175,8 +177,36 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    private void changeFolder(String directory) {
+    private void changeFolder(String directory) throws NoSuchFileException, NotDirectoryException {
         Path path0 = Path.of(activeDirectory + directory);
+
+        //TODO rewrite changeFolderMethod
+//        if (directory.equals("/")) {
+//            while (path0.getParent() != null) {
+//                path0 = path0.getParent();
+//            }
+//            System.out.println(path0.toString());
+//        } else if(directory.equals("..")) {
+//            if (path0.getParent() == null) {
+//                System.out.println(path0.toString());
+//            }
+//            path0 = path0.getParent();
+//        } else if (directory.equals(".")) {
+//            System.out.println(path0.toString());
+//        } else {
+//            //path0 = Path.of(rootPath, destinationDir);
+//        }
+//        if (Files.exists(path0)) {
+//            if (Files.isDirectory(path0)) {
+//                activeDirectory = activeDirectory + directory;
+//                System.out.println(path0.toString());
+//            } else {
+//                throw new NotDirectoryException(directory);
+//            }
+//        } else {
+//            throw new NoSuchFileException(directory);
+//        }
+
 
         if (Files.exists(path0)) {
             System.out.println("new directory: " + directory);
