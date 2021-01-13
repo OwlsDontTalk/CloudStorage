@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.*;
 import org.apache.commons.io.FileUtils;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -106,11 +107,14 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
     private void sendFileToServer(String filename, ChannelHandlerContext ctx) throws IOException {
         Path path = Paths.get(activeDirectory + filename);
+        BufferedOutputStream out;
+
         if (!Files.exists(path)) {
             System.out.println("no such local file " + filename);
             return;
         }
         FileRegion region = new DefaultFileRegion(path.toFile(), 0, Files.size(path));
+        System.out.println(Files.size(path));
 
         ByteBuf buf = null;
         byte[] allBytes = Files.readAllBytes(path);
@@ -132,7 +136,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         ctx.writeAndFlush(buf);
 
         //4. send fileSize to server
-        buf = ByteBufAllocator.DEFAULT.directBuffer(8);
+        buf = ByteBufAllocator.DEFAULT.directBuffer(4);
         buf.writeLong(Files.size(path));
         ctx.writeAndFlush(buf);
 

@@ -21,7 +21,6 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
-    Long receivedFileLength = 0L;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -36,8 +35,11 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("[HANDLER] AuthHandler");
+
         ByteBuf buf = (ByteBuf) msg;
         byte command = buf.readByte();
+        Long receivedFileLength = 0L;
+
         System.out.println("[RECIVED] commands: " + (char)command);
 
         if((char)command == 's'){
@@ -69,17 +71,33 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
             buf.readBytes(filename);
             String serverFileName = activeDirectory.concat(new String(filename, StandardCharsets.UTF_8));
             System.out.println("[RECEIVED] filename: " + serverFileName);
-            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(serverFileName));
 
             //4. receiving file size
             //byte[] allBytes = new byte[buf.readableBytes()];
             long size = buf.readLong();
             System.out.println("[RECEIVED] readable bytes: " + buf.readableBytes() + ", file size: " + size);
-            File file = new File(serverFileName);
-            FileOutputStream fos = new FileOutputStream(file);
+
+            //5. receiving file
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(serverFileName));
+            while (buf.readableBytes() > 0) {
+
+                out.write(buf.readByte());
+                receivedFileLength++;
+                if (size == receivedFileLength) {
+                    System.out.println("File received");
+                    out.close();
+                    break;
+                }
+
+            }
+            if (buf.readableBytes() == 0) {
+                buf.release();
+            }
+
 //            if (buf.isReadable()) {
 //                buf.readBytes(fos, buf.readableBytes());
 //                fos.flush();
+//                System.out.println("123");
 //            } else {
 //                System.out.println("I want to close fileoutputstream!");
 //                buf.release();
@@ -87,17 +105,12 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
 //                fos.close();
 //            }
 
-            int i = 0;
-            while (buf.readableBytes() > 0) {
-                i++;
-                fos.write(buf.readByte());
-            }
+
 
             //FileUtils.writeByteArrayToFile(new File(activeDirectory+serverFileName), allBytes);
            // buf.release();
         }
     }
-
 
     private boolean authUser(String s, String s1) {
         connect();
