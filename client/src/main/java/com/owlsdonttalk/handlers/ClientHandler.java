@@ -94,6 +94,13 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
                     System.out.println("command structure: connect [login] [password]");
                 }
                 break;
+            case ("register"):
+                if (command.length >= 3) {
+                    registerUser(command[1], command[2], ctx);
+                } else {
+                    System.out.println("command structure: register [login] [password]");
+                }
+                break;
             case ("remove"):
                 removeLocalFile(command[1]);
                 break;
@@ -103,6 +110,10 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             default:
                 System.out.println("[SYSTEM] Command not found, try again.");
         }
+    }
+
+    private void registerUser(String login, String password, ChannelHandlerContext ctx) {
+        ctx.writeAndFlush("sreg " + login + " " + password);
     }
 
     private void sendFileToServer(String filename, ChannelHandlerContext ctx) throws IOException {

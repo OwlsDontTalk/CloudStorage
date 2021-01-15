@@ -13,11 +13,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
 
-public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements Connectable {
+public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements Connectable {
 
-    private String activeDirectory = "server/storage/root/";
+    private String activeDirectory = "server/storage/";
+    private String rootServerDirectory = "server/storage/";
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
@@ -40,34 +43,49 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
         byte command = buf.readByte();
         Long receivedFileLength = 0L;
 
-        System.out.println("[RECIVED] commands: " + (char)command);
+        System.out.println("[RECEIVED] commands: " + (char) command);
 
-        if((char)command == 's'){
-            System.out.println("String recived, working with commands");
+        if ((char) command == 's') {
+            System.out.println("String received, working with commands");
             String[] commandsArray = buf.toString(Charset.defaultCharset()).split(" ");
 
-            if(commandsArray[0].equals("auth")){
+            if (commandsArray[0].equals("auth")) {
                 System.out.println("Trying to auth user " + commandsArray[1] + " with password " + commandsArray[2]);
-                if(authUser(commandsArray[1], commandsArray[2])){
-                    System.out.println("auth success, flushing message to clienet");
+                if (authUser(commandsArray[1], commandsArray[2])) {
+                    System.out.println("auth success, flushing message to client");
                     ctx.fireChannelRead("auth success");
                 } else {
                     ctx.fireChannelRead("auth fail");
                 }
-            } else {
-                System.out.println("execute command.. " + commandsArray[0]);
+            }
+            if (commandsArray[0].equals("reg")) {
+                System.out.println("Trying to register user " + commandsArray[1] + " with password " + commandsArray[2]);
+                if (registerNewUser(commandsArray[1], commandsArray[2])) {
+                    System.out.println("register success");
+                    try{
+                        Path newUserDir = Path.of(rootServerDirectory + commandsArray[1]);
+                        Files.createDirectory(newUserDir);
+                        System.out.println("user " + commandsArray[1] + " folder created");
+                    } catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
+                    ctx.fireChannelRead("register success");
+                } else {
+                    System.out.println("register fail");
+                    ctx.writeAndFlush("register fail");
+                }
             }
         }
-        if((char)command == 'f'){
+        if ((char) command == 'f') {
             //1.
             System.out.println("File expected, working with file");
 
             //2. receiving filname length
-            int filnameLength = buf.readInt();
-            System.out.println("[RECEIVED] filename length: " + filnameLength);
+            int filenameLength = buf.readInt();
+            System.out.println("[RECEIVED] filename length: " + filenameLength);
 
             //3. receiving file name
-            byte[] filename = new byte[filnameLength];
+            byte[] filename = new byte[filenameLength];
             buf.readBytes(filename);
             String serverFileName = activeDirectory.concat(new String(filename, StandardCharsets.UTF_8));
             System.out.println("[RECEIVED] filename: " + serverFileName);
@@ -93,22 +111,6 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
             if (buf.readableBytes() == 0) {
                 buf.release();
             }
-
-//            if (buf.isReadable()) {
-//                buf.readBytes(fos, buf.readableBytes());
-//                fos.flush();
-//                System.out.println("123");
-//            } else {
-//                System.out.println("I want to close fileoutputstream!");
-//                buf.release();
-//                fos.flush();
-//                fos.close();
-//            }
-
-
-
-            //FileUtils.writeByteArrayToFile(new File(activeDirectory+serverFileName), allBytes);
-           // buf.release();
         }
     }
 
@@ -117,13 +119,35 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
         return checkLogin(s, s1);
     }
 
+    public boolean registerNewUser(String login, String password) {
+        String password_hash = DigestUtils.md5Hex(password);
+        String request = "INSERT INTO users_tbl (login_fld, password_hash_fld) VALUES ('"
+                + login
+                + "', '"
+                + password_hash
+                + "')";
+        System.out.println(request);
+
+        if (this.conn == null) {
+            System.out.println("no active db connection");
+            connect();
+        }
+        try {
+            statement = conn.createStatement();
+            statement.execute(request);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
     @Override
     public void connect() {
         try {
             String url = "jdbc:sqlite:cloudstorage.db";
             this.conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -139,14 +163,14 @@ public class InboundAuthHandler  extends ChannelInboundHandlerAdapter implements
                 + password_hash
                 + "\"";
 
-        if(this.conn == null){
+        if (this.conn == null) {
             System.out.println("no active db connection");
             return false;
         }
         try {
             statement = conn.createStatement();
             resultSet = statement.executeQuery(request);
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 System.out.println("Login found, password correct");
                 return true;
             } else {

@@ -1,8 +1,6 @@
 package com.owlsdonttalk;
 
 import com.owlsdonttalk.handlers.in.InboundAuthHandler;
-import com.owlsdonttalk.handlers.in.InboundProceedCommandHandler;
-import com.owlsdonttalk.handlers.out.OutboundResponceToClientHandler;
 
 import java.io.*;
 import java.util.Properties;
@@ -35,10 +33,7 @@ public class CloudServer {
                         @Override
                         public void initChannel(SocketChannel ch) {
                             ch.pipeline()
-                                    .addLast(
-                                            new OutboundResponceToClientHandler(),
-                                            new InboundAuthHandler(),
-                                            new InboundProceedCommandHandler());
+                                    .addLast(new InboundAuthHandler());
                         }
                     });
             ChannelFuture f = b.bind(serverPort).sync();
