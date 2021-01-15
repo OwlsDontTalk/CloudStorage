@@ -5,11 +5,9 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -19,8 +17,10 @@ import java.sql.*;
 
 public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements Connectable {
 
+
+    private static final Logger log = Logger.getLogger(InboundAuthHandler.class);
     private String activeDirectory = "server/storage/";
-    private String rootServerDirectory = "server/storage/";
+    private final String rootServerDirectory = "server/storage/";
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
@@ -28,16 +28,19 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("client connected");
+        log.info("Server - client connect");
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("client disconnected");
+        log.info("Server - client disconnect");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("[HANDLER] AuthHandler");
+        log.info("Server - Inbound Auth handler channel read - bytes recieved");
 
         ByteBuf buf = (ByteBuf) msg;
         byte command = buf.readByte();

@@ -1,9 +1,11 @@
 package com.owlsdonttalk.handlers;
 
+import com.owlsdonttalk.NettyCLI;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.*;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -16,6 +18,7 @@ import java.util.Scanner;
 
 public class ClientHandler extends ChannelInboundHandlerAdapter {
 
+    private static final Logger log = Logger.getLogger(ClientHandler.class);
     private Scanner scanner = new Scanner(System.in);
     private String activeDirectory = "client/dir/";
     private static String serverIP = "";
@@ -43,6 +46,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void printHelp() {
+        log.info("User requested help file");
         System.out.println("[SYSTEM] Printing help file.");
         List<String> lines = null;
 
@@ -51,6 +55,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 
             lines = Files.readAllLines(path);
         } catch (IOException e) {
+            log.error("Client - Printing help.md fail");
             System.out.println("[ERROR] " + e.getMessage());
         }
 
@@ -73,6 +78,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
                 break;
             case ("end"):
                 System.out.println("[SYSTEM] Shutting down..");
+                log.info("Stopping input processing");
                 break;
             case ("ls"):
                 printDirectoryContent();
@@ -117,6 +123,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void sendFileToServer(String filename, ChannelHandlerContext ctx) throws IOException {
+        log.info("Client trying to send file to server...");
         Path path = Paths.get(activeDirectory + filename);
         BufferedOutputStream out;
 

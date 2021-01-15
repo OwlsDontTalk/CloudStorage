@@ -8,6 +8,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.ConnectException;
@@ -16,6 +17,7 @@ import java.util.Properties;
 public class NettyCLI {
     private static String serverIP = "";
     private static int serverPort = -1;
+
 
     public static void main(String[] args) throws Exception {
         NettyCLI nettyCLI = new NettyCLI();
