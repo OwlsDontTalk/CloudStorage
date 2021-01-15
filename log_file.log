@@ -1,3 +1,33 @@
-2021-01-15 21:47:10 INFO  InboundAuthHandler:31 - Server - client connect
-2021-01-15 21:47:21 INFO  InboundAuthHandler:43 - Server - Inbound Auth handler channel read - bytes recieved
-2021-01-15 21:47:35 INFO  ClientHandler:49 - User requested help file
+2021-01-15 22:08:30 INFO  InboundAuthHandler:31 - Server - client connect
+2021-01-15 22:08:32 INFO  ClientHandler:126 - Client trying to send file to server...
+2021-01-15 22:08:32 INFO  InboundAuthHandler:43 - Server - Inbound Auth handler channel read. Processing started
+2021-01-15 22:08:32 INFO  InboundAuthHandler:86 - File expected, working with file
+2021-01-15 22:08:32 INFO  InboundAuthHandler:90 - [RECEIVED] filename length: 5
+2021-01-15 22:08:32 INFO  InboundAuthHandler:96 - [RECEIVED] filename: server/storage/1.txt
+2021-01-15 22:08:32 INFO  InboundAuthHandler:101 - [RECEIVED] readable bytes: 4, file size: 4
+2021-01-15 22:08:32 INFO  InboundAuthHandler:110 - File received
+2021-01-15 22:13:20 INFO  InboundAuthHandler:31 - Client connect
+2021-01-15 22:13:23 INFO  ClientHandler:126 - Client trying to send file to server...
+2021-01-15 22:13:23 INFO  ClientHandler:139 - sending F symbol to let server know it should work with file
+2021-01-15 22:13:23 INFO  ClientHandler:148 - Sending filename size to server: 5
+2021-01-15 22:13:23 INFO  ClientHandler:155 - Sending filename to server [B@48835b64
+2021-01-15 22:13:23 INFO  ClientHandler:161 - Sending filesize to server 4
+2021-01-15 22:13:23 INFO  InboundAuthHandler:42 - Server - Inbound Auth handler channel read. Processing started
+2021-01-15 22:13:23 INFO  InboundAuthHandler:83 - File expected, working with file
+2021-01-15 22:13:23 INFO  InboundAuthHandler:87 - [RECEIVED] filename length: 5
+2021-01-15 22:13:23 INFO  InboundAuthHandler:93 - [RECEIVED] filename: server/storage/1.txt
+2021-01-15 22:13:23 INFO  InboundAuthHandler:98 - [RECEIVED] readable bytes: 4, file size: 4
+2021-01-15 22:13:23 INFO  InboundAuthHandler:107 - File received
+2021-01-15 22:15:38,437 INFO  InboundAuthHandler:31 - Client connect
+2021-01-15 22:16:12,520 INFO  ClientHandler:126 - Client trying to send file to server...
+2021-01-15 22:16:12,531 INFO  ClientHandler:139 - sending F symbol to let server know it should work with file
+2021-01-15 22:16:12,556 INFO  ClientHandler:148 - Sending filename size to server: 5
+2021-01-15 22:16:12,557 INFO  ClientHandler:155 - Sending filename to server [B@1a0fd69d
+2021-01-15 22:16:12,559 INFO  ClientHandler:161 - Sending filesize to server 4
+2021-01-15 22:16:12,569 INFO  InboundAuthHandler:42 - Server - Inbound Auth handler channel read. Processing started
+2021-01-15 22:16:12,570 INFO  InboundAuthHandler:83 - File expected, working with file
+2021-01-15 22:16:12,572 INFO  InboundAuthHandler:87 - [RECEIVED] filename length: 5
+2021-01-15 22:16:12,572 INFO  InboundAuthHandler:93 - [RECEIVED] filename: server/storage/1.txt
+2021-01-15 22:16:12,576 INFO  InboundAuthHandler:98 - [RECEIVED] readable bytes: 4, file size: 4
+2021-01-15 22:16:12,576 INFO  InboundAuthHandler:107 - File received
+2021-01-15 22:17:01,465 INFO  InboundAuthHandler:37 - Client disconnect

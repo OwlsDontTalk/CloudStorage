@@ -132,12 +132,11 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             return;
         }
         FileRegion region = new DefaultFileRegion(path.toFile(), 0, Files.size(path));
-        System.out.println(Files.size(path));
-
         ByteBuf buf = null;
         byte[] allBytes = Files.readAllBytes(path);
 
         //1. send F to tell server it shoud expect file
+        log.info("sending F symbol to let server know it should work with file");
         buf = ByteBufAllocator.DEFAULT.directBuffer(1);
         buf.writeByte(102);
         ctx.writeAndFlush(buf);
@@ -146,16 +145,20 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         byte[] filenameBytes = path.getFileName().toString().getBytes(StandardCharsets.UTF_8);
         buf = ByteBufAllocator.DEFAULT.directBuffer(4);
         buf.writeInt(filenameBytes.length);
+        log.info("Sending filename size to server: " + filenameBytes.length);
         ctx.writeAndFlush(buf);
+
 
         //3. send filename to server
         buf = ByteBufAllocator.DEFAULT.directBuffer(filenameBytes.length);
         buf.writeBytes(filenameBytes);
+        log.info("Sending filename to server " + filenameBytes);
         ctx.writeAndFlush(buf);
 
         //4. send fileSize to server
         buf = ByteBufAllocator.DEFAULT.directBuffer(4);
         buf.writeLong(Files.size(path));
+        log.info("Sending filesize to server " + Files.size(path));
         ctx.writeAndFlush(buf);
 
         //5. send file to server

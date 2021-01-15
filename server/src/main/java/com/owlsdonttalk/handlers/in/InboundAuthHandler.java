@@ -28,75 +28,74 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("client connected");
-        log.info("Server - client connect");
+        log.info("Client connect");
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("client disconnected");
-        log.info("Server - client disconnect");
+        log.info("Client disconnect");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("[HANDLER] AuthHandler");
-        log.info("Server - Inbound Auth handler channel read - bytes recieved");
+        log.info("Server - Inbound Auth handler channel read. Processing started");
 
         ByteBuf buf = (ByteBuf) msg;
         byte command = buf.readByte();
         Long receivedFileLength = 0L;
 
-        System.out.println("[RECEIVED] commands: " + (char) command);
-
         if ((char) command == 's') {
-            System.out.println("String received, working with commands");
+
             String[] commandsArray = buf.toString(Charset.defaultCharset()).split(" ");
+            log.info("String received, working with command: " + commandsArray[0]);
 
             if (commandsArray[0].equals("auth")) {
-                System.out.println("Trying to auth user " + commandsArray[1] + " with password " + commandsArray[2]);
+                log.info("Trying to auth user " + commandsArray[1] + " with password " + commandsArray[2]);
                 if (authUser(commandsArray[1], commandsArray[2])) {
-                    System.out.println("auth success, flushing message to client");
-                    ctx.fireChannelRead("auth success");
+                    log.info("auth success, flushing message to client");
+                    ctx.writeAndFlush("Auth success");
                 } else {
-                    ctx.fireChannelRead("auth fail");
+                    ctx.writeAndFlush("Auth fail");
                 }
             }
             if (commandsArray[0].equals("reg")) {
-                System.out.println("Trying to register user " + commandsArray[1] + " with password " + commandsArray[2]);
+                log.info("Trying to register user " + commandsArray[1] + " with password " + commandsArray[2]);
                 if (registerNewUser(commandsArray[1], commandsArray[2])) {
-                    System.out.println("register success");
+                    log.info("Register success");
                     try{
                         Path newUserDir = Path.of(rootServerDirectory + commandsArray[1]);
                         Files.createDirectory(newUserDir);
-                        System.out.println("user " + commandsArray[1] + " folder created");
+                        log.info("user " + commandsArray[1] + " folder created");
                     } catch (Exception e){
                         System.out.println(e.getMessage());
+                        log.error(e.getMessage());
                     }
-                    ctx.fireChannelRead("register success");
+                    ctx.writeAndFlush("register success");
                 } else {
-                    System.out.println("register fail");
+                    log.error("register fail");
                     ctx.writeAndFlush("register fail");
                 }
             }
         }
         if ((char) command == 'f') {
             //1.
-            System.out.println("File expected, working with file");
+            log.info("File expected, working with file");
 
             //2. receiving filname length
             int filenameLength = buf.readInt();
-            System.out.println("[RECEIVED] filename length: " + filenameLength);
+            log.info("[RECEIVED] filename length: " + filenameLength);
 
             //3. receiving file name
             byte[] filename = new byte[filenameLength];
             buf.readBytes(filename);
             String serverFileName = activeDirectory.concat(new String(filename, StandardCharsets.UTF_8));
-            System.out.println("[RECEIVED] filename: " + serverFileName);
+            log.info("[RECEIVED] filename: " + serverFileName);
 
             //4. receiving file size
             //byte[] allBytes = new byte[buf.readableBytes()];
             long size = buf.readLong();
-            System.out.println("[RECEIVED] readable bytes: " + buf.readableBytes() + ", file size: " + size);
+            log.info("[RECEIVED] readable bytes: " + buf.readableBytes() + ", file size: " + size);
 
             //5. receiving file
             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(serverFileName));
@@ -105,20 +104,19 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                 out.write(buf.readByte());
                 receivedFileLength++;
                 if (size == receivedFileLength) {
-                    System.out.println("File received");
+                    log.info("File received");
                     out.close();
                     break;
                 }
 
             }
-            if (buf.readableBytes() == 0) {
-                buf.release();
-            }
+//            if (buf.readableBytes() == 0) {
+//                buf.release();
+//            }
         }
     }
 
     private boolean authUser(String s, String s1) {
-        connect();
         return checkLogin(s, s1);
     }
 
@@ -131,10 +129,8 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                 + "')";
         System.out.println(request);
 
-        if (this.conn == null) {
-            System.out.println("no active db connection");
-            connect();
-        }
+        if (this.conn == null) connect();
+
         try {
             statement = conn.createStatement();
             statement.execute(request);
@@ -166,10 +162,8 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                 + password_hash
                 + "\"";
 
-        if (this.conn == null) {
-            System.out.println("no active db connection");
-            return false;
-        }
+        if (this.conn == null) connect();
+
         try {
             statement = conn.createStatement();
             resultSet = statement.executeQuery(request);
