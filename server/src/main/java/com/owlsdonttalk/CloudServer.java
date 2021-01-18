@@ -9,6 +9,9 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 
 public class CloudServer {
 
@@ -33,6 +36,8 @@ public class CloudServer {
                         @Override
                         public void initChannel(SocketChannel ch) {
                             ch.pipeline()
+                                    .addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)))
+                                    .addLast(new ObjectEncoder())
                                     .addLast(new InboundAuthHandler());
                         }
                     });

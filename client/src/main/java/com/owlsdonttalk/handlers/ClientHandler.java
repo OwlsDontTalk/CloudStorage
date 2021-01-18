@@ -1,6 +1,5 @@
 package com.owlsdonttalk.handlers;
 
-import com.owlsdonttalk.NettyCLI;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.*;
@@ -24,6 +23,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     private static String serverIP = "";
     private static int serverPort = -1;
 
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws IOException {
         System.out.println("[START] Hello and welcome to CommandLineInterface");
@@ -34,6 +34,12 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
             command = getNextCommand();
             executeCommand(command, ctx);
         } while (!command[0].equals("end"));
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) {
+        System.out.println("Flushing");
+        ctx.flush();
     }
 
     @Override
@@ -202,36 +208,8 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    private void changeFolder(String directory) throws NoSuchFileException, NotDirectoryException {
+    private void changeFolder(String directory) {
         Path path0 = Path.of(activeDirectory + directory);
-
-        //TODO rewrite changeFolderMethod
-//        if (directory.equals("/")) {
-//            while (path0.getParent() != null) {
-//                path0 = path0.getParent();
-//            }
-//            System.out.println(path0.toString());
-//        } else if(directory.equals("..")) {
-//            if (path0.getParent() == null) {
-//                System.out.println(path0.toString());
-//            }
-//            path0 = path0.getParent();
-//        } else if (directory.equals(".")) {
-//            System.out.println(path0.toString());
-//        } else {
-//            //path0 = Path.of(rootPath, destinationDir);
-//        }
-//        if (Files.exists(path0)) {
-//            if (Files.isDirectory(path0)) {
-//                activeDirectory = activeDirectory + directory;
-//                System.out.println(path0.toString());
-//            } else {
-//                throw new NotDirectoryException(directory);
-//            }
-//        } else {
-//            throw new NoSuchFileException(directory);
-//        }
-
 
         if (Files.exists(path0)) {
             System.out.println("new directory: " + directory);

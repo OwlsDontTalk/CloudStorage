@@ -1,4 +1,4 @@
-package com.owlsdonttalk;
+package com.owlsdonttalk.archive;
 
 import com.owlsdonttalk.handlers.ClientHandler;
 import io.netty.bootstrap.Bootstrap;
@@ -6,12 +6,11 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
-import org.apache.log4j.Logger;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 
 import java.io.*;
-import java.net.ConnectException;
 import java.util.Properties;
 
 public class NettyCLI {
@@ -38,8 +37,8 @@ public class NettyCLI {
                 @Override
                 public void initChannel(SocketChannel ch)
                         throws Exception {
-                    ch.pipeline().addLast(new StringDecoder())
-                            .addLast(new StringEncoder())
+                    ch.pipeline().addLast(new ObjectEncoder())
+                            .addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)))
                             .addLast(new ClientHandler());
                 }
             });

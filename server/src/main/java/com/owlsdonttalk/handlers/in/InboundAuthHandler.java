@@ -40,6 +40,7 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         log.info("Server - Inbound Auth handler channel read. Processing started");
+        System.out.println("Type of got message: " + msg.getClass());
 
         ByteBuf buf = (ByteBuf) msg;
         byte command = buf.readByte();
