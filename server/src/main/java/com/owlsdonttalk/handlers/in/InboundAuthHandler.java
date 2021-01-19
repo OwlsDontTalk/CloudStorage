@@ -2,6 +2,7 @@ package com.owlsdonttalk.handlers.in;
 
 import com.owlsdonttalk.interfaces.Connectable;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -24,25 +25,23 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
+    ByteBuf buf, bufOut;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("client connected");
         log.info("Client connect");
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("client disconnected");
         log.info("Client disconnect");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        log.info("Server - Inbound Auth handler channel read. Processing started");
-        System.out.println("Type of got message: " + msg.getClass());
+        log.info("channelRead: input processing started");
 
-        ByteBuf buf = (ByteBuf) msg;
+        buf = (ByteBuf)msg;
         byte command = buf.readByte();
         Long receivedFileLength = 0L;
 
@@ -111,9 +110,8 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                 }
 
             }
-//            if (buf.readableBytes() == 0) {
-//                buf.release();
-//            }
+
+
         }
     }
 

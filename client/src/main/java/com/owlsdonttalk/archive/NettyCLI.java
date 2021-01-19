@@ -1,6 +1,5 @@
 package com.owlsdonttalk.archive;
 
-import com.owlsdonttalk.handlers.ClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

@@ -35,10 +35,7 @@ public class CloudServer {
                     .childHandler(new ChannelInitializer<io.netty.channel.socket.SocketChannel>() {
                         @Override
                         public void initChannel(SocketChannel ch) {
-                            ch.pipeline()
-                                    .addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)))
-                                    .addLast(new ObjectEncoder())
-                                    .addLast(new InboundAuthHandler());
+                            ch.pipeline().addLast(new InboundAuthHandler());
                         }
                     });
             ChannelFuture f = b.bind(serverPort).sync();

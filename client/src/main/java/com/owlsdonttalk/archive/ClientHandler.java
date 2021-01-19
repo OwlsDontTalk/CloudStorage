@@ -1,4 +1,4 @@
-package com.owlsdonttalk.handlers;
+package com.owlsdonttalk.archive;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
@@ -172,7 +172,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void connectToServer(String login, String password, ChannelHandlerContext ctx) {
-        ctx.writeAndFlush("sauth " + login + " " + password);
+        //ctx.writeAndFlush("sauth " + login + " " + password);
     }
 
     private void renameLocalFile(String file, String newName) throws IOException {
