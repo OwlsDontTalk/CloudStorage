@@ -1,14 +1,12 @@
 package com.owlsdonttalk.handlers;
 
 import com.owlsdonttalk.archive.ClientHandler;
+import com.owlsdonttalk.enums.Commands;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -98,21 +96,34 @@ public class CommandProcessing {
     private void registerUser(String login, String password) throws IOException {
         String s = "sreg " + login + " " + password;
         byte[] arr = s.getBytes();
-        this.out.write(arr);
+        out.write(arr);
+        System.out.println(in.readByte());
     }
 
     private void sendFileToServer(String filename) throws IOException {
-
+        Path path = Path.of(activeDirectory + filename);
+        System.out.printf("trying to upload " + filename);
+        out.writeByte(Commands.UPLOAD.getSignalByte());
+        String fileName = path.getFileName().toString();
+        int fileNameLength = fileName.length();
+        out.writeInt(fileNameLength);
+        out.write(fileName.getBytes());
+        long fileSize = Files.size(path);
+        out.writeLong(fileSize);
+        byte[] buf = new byte[256];
+        try (InputStream inputStream = new FileInputStream(path.toFile())) {
+            int n;
+            while ((n = inputStream.read(buf)) != -1) {
+                out.write(buf, 0, n);
+            }
+        }
     }
 
     private void connectToServer(String login, String password) throws IOException {
         String connectionString = "sauth " + login + " " + password;
         byte[] arr = connectionString.getBytes();
         out.write(arr);
-        System.out.println(out);
-        System.out.println(in);
-        sygnalByte = in.readByte();
-        System.out.println(sygnalByte);
+        System.out.println(in.readByte());
     }
 
     private void renameLocalFile(String file, String newName) throws IOException {

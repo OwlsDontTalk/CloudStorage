@@ -651,3 +651,262 @@ io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1
 	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
 	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
 	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 22:38:25,034 INFO  ClientHandler:33 - command line interface started
+2021-01-19 22:38:25,035 INFO  ClientHandler:37 - reading property file
+2021-01-19 22:38:25,042 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 22:38:25,052 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@282ba1e connected to server
+2021-01-19 22:38:25,055 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 22:38:27,942 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 22:38:27,944 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 22:38:27,946 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-19 22:38:28,018 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 22:38:28,020 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1
+	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:74)
+	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:138)
+	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:100)
+	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:88)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1198)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1208)
+	at io.netty.channel.DefaultChannelPipeline$TailContext.channelRead(DefaultChannelPipeline.java:1308)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at com.owlsdonttalk.handlers.in.InboundAuthHandler.channelRead(InboundAuthHandler.java:64)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 22:50:57,596 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 22:50:57,596 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 22:50:57,596 INFO  InboundAuthHandler:56 - Trying to auth user root with password 12345
+2021-01-19 22:50:57,596 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 22:50:57,597 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1
+	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:74)
+	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:138)
+	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:100)
+	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:88)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1198)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1208)
+	at io.netty.channel.DefaultChannelPipeline$TailContext.channelRead(DefaultChannelPipeline.java:1308)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at com.owlsdonttalk.handlers.in.InboundAuthHandler.channelRead(InboundAuthHandler.java:64)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 23:36:47,469 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:367)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:398)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:247)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1147)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:347)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 23:36:47,470 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-19 23:36:48,880 INFO  ClientHandler:36 - command line interface started
+2021-01-19 23:36:48,882 INFO  ClientHandler:40 - reading property file
+2021-01-19 23:36:48,889 INFO  ClientHandler:45 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 23:36:48,896 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 23:36:48,898 INFO  ClientHandler:56 - client com.owlsdonttalk.CLI@282ba1e connected to server
+2021-01-19 23:37:01,958 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:367)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:398)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:247)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1147)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:347)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 23:37:01,958 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-19 23:37:03,277 INFO  ClientHandler:37 - command line interface started
+2021-01-19 23:37:03,278 INFO  ClientHandler:41 - reading property file
+2021-01-19 23:37:03,286 INFO  ClientHandler:46 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 23:37:03,293 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 23:37:03,295 INFO  ClientHandler:57 - client com.owlsdonttalk.CLI@13b6d03 connected to server
+2021-01-19 23:58:24,295 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:367)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:398)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:247)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1147)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:347)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 23:58:24,296 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-20 00:27:43,238 INFO  ClientHandler:31 - command line interface started
+2021-01-20 00:27:43,239 INFO  ClientHandler:35 - reading property file
+2021-01-20 00:27:43,246 INFO  ClientHandler:40 - Server setup. IP: localhost , PORT: 8189
+2021-01-20 00:27:43,254 INFO  InboundAuthHandler:32 - Client connect
+2021-01-20 00:27:43,255 INFO  ClientHandler:51 - client com.owlsdonttalk.CLI@13b6d03 connected to server
+2021-01-20 00:27:47,057 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-20 00:27:47,057 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-20 00:27:47,057 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-20 00:27:47,059 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-20 00:27:47,059 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1
+	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:74)
+	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:138)
+	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:100)
+	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:88)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1198)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1208)
+	at io.netty.channel.DefaultChannelPipeline$TailContext.channelRead(DefaultChannelPipeline.java:1308)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at com.owlsdonttalk.handlers.in.InboundAuthHandler.channelRead(InboundAuthHandler.java:64)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-20 00:28:03,344 INFO  ClientHandler:31 - command line interface started
+2021-01-20 00:28:03,345 INFO  ClientHandler:35 - reading property file
+2021-01-20 00:28:03,352 INFO  ClientHandler:40 - Server setup. IP: localhost , PORT: 8189
+2021-01-20 00:28:03,361 INFO  ClientHandler:51 - client com.owlsdonttalk.CLI@13b6d03 connected to server
+2021-01-20 00:28:03,365 INFO  InboundAuthHandler:34 - Client connect
+2021-01-20 00:28:06,063 INFO  InboundAuthHandler:46 - channelRead: input processing started
+2021-01-20 00:28:06,065 INFO  InboundAuthHandler:55 - String received, working with command: auth
+2021-01-20 00:28:06,067 INFO  InboundAuthHandler:58 - Trying to auth user 1 with password 1
+2021-01-20 00:28:06,132 INFO  InboundAuthHandler:60 - auth success, flushing message to client
+2021-01-20 00:41:49,849 INFO  ClientHandler:30 - command line interface started
+2021-01-20 00:41:49,850 INFO  ClientHandler:34 - reading property file
+2021-01-20 00:41:49,857 INFO  ClientHandler:39 - Server setup. IP: localhost , PORT: 8189
+2021-01-20 00:41:49,867 INFO  ClientHandler:50 - client com.owlsdonttalk.CLI@282ba1e connected to server
+2021-01-20 00:41:49,871 INFO  InboundAuthHandler:33 - Client connect
+2021-01-20 00:41:52,778 INFO  InboundAuthHandler:45 - channelRead: input processing started
+2021-01-20 00:42:51,818 INFO  ClientHandler:30 - command line interface started
+2021-01-20 00:42:51,820 INFO  ClientHandler:34 - reading property file
+2021-01-20 00:42:51,827 INFO  ClientHandler:39 - Server setup. IP: localhost , PORT: 8189
+2021-01-20 00:42:51,836 INFO  ClientHandler:50 - client com.owlsdonttalk.CLI@282ba1e connected to server
+2021-01-20 00:42:51,840 INFO  InboundAuthHandler:33 - Client connect
+2021-01-20 00:42:55,039 INFO  InboundAuthHandler:45 - channelRead: input processing started
+2021-01-20 00:42:55,040 INFO  InboundAuthHandler:54 - String received, working with command: auth
+2021-01-20 00:42:55,042 INFO  InboundAuthHandler:57 - Trying to auth user 1 with password 1
+2021-01-20 00:42:55,108 INFO  InboundAuthHandler:59 - auth success, flushing message to client
+2021-01-20 00:46:52,150 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:367)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:398)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:247)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1147)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:347)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-20 00:46:52,152 INFO  InboundAuthHandler:40 - Client disconnect
+2021-01-20 00:46:58,583 INFO  ClientHandler:30 - command line interface started
+2021-01-20 00:46:58,585 INFO  ClientHandler:34 - reading property file
+2021-01-20 00:46:58,592 INFO  ClientHandler:39 - Server setup. IP: localhost , PORT: 8189
+2021-01-20 00:46:58,602 INFO  ClientHandler:50 - client com.owlsdonttalk.CLI@282ba1e connected to server
+2021-01-20 00:46:58,606 INFO  InboundAuthHandler:33 - Client connect
+2021-01-20 00:47:06,976 INFO  InboundAuthHandler:45 - channelRead: input processing started
+2021-01-20 00:47:06,977 INFO  InboundAuthHandler:54 - String received, working with command: reg
+2021-01-20 00:47:06,979 INFO  InboundAuthHandler:67 - Trying to register user 10 with password 10
+2021-01-20 00:47:07,096 INFO  InboundAuthHandler:69 - Register success
+2021-01-20 00:47:07,097 INFO  InboundAuthHandler:73 - user 10 folder created
+2021-01-20 00:47:07,098 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1
+	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:74)
+	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:138)
+	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:100)
+	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:88)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1198)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1208)
+	at io.netty.channel.DefaultChannelPipeline$TailContext.channelRead(DefaultChannelPipeline.java:1308)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at com.owlsdonttalk.handlers.in.InboundAuthHandler.channelRead(InboundAuthHandler.java:83)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-20 00:53:01,599 INFO  ClientHandler:30 - command line interface started
+2021-01-20 00:53:01,600 INFO  ClientHandler:34 - reading property file
+2021-01-20 00:53:01,607 INFO  ClientHandler:39 - Server setup. IP: localhost , PORT: 8189
+2021-01-20 00:53:01,616 INFO  ClientHandler:50 - client com.owlsdonttalk.CLI@282ba1e connected to server
+2021-01-20 00:53:01,621 INFO  InboundAuthHandler:33 - Client connect
+2021-01-20 00:53:11,913 INFO  InboundAuthHandler:45 - channelRead: input processing started
+2021-01-20 00:53:11,914 INFO  InboundAuthHandler:54 - String received, working with command: auth
+2021-01-20 00:53:11,916 INFO  InboundAuthHandler:57 - Trying to auth user 10 with password 10
+2021-01-20 00:53:11,983 INFO  InboundAuthHandler:59 - auth success, flushing message to client

@@ -1,21 +1,18 @@
 package com.owlsdonttalk;
 
 import com.owlsdonttalk.archive.ClientHandler;
+import com.owlsdonttalk.enums.Commands;
 import com.owlsdonttalk.handlers.CommandProcessing;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.Properties;
-import java.util.Scanner;
 
 public class CLI {
 
+
+    private String username;
     private static String serverIP = "";
     private static int serverPort = -1;
     private static final org.apache.log4j.Logger log = Logger.getLogger(ClientHandler.class);
@@ -29,7 +26,7 @@ public class CLI {
 
     }
 
-    CLI(){
+    CLI() {
         log.info("command line interface started");
         File file = new File("config.properties");
         Properties properties = new Properties();
@@ -45,8 +42,8 @@ public class CLI {
         }
     }
 
-    private void start(){
-        try (Socket socket = new Socket(serverIP, serverPort)){
+    private void start() {
+        try (Socket socket = new Socket(serverIP, serverPort)) {
             this.out = new DataOutputStream(socket.getOutputStream());
             this.in = new DataInputStream(socket.getInputStream());
             System.out.println("Connection to server established");
@@ -54,10 +51,15 @@ public class CLI {
             CommandProcessing cmd = new CommandProcessing(out, in);
         } catch (IOException e) {
             e.printStackTrace();
-        };
-//        } finally {
-//            scanner.close();
-//        }
+        }
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }

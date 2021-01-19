@@ -1,5 +1,7 @@
 package com.owlsdonttalk.handlers.in;
 
+import com.owlsdonttalk.enums.Commands;
+import com.owlsdonttalk.enums.Stage;
 import com.owlsdonttalk.interfaces.Connectable;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
@@ -18,13 +20,13 @@ import java.sql.*;
 
 public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements Connectable {
 
-
     private static final Logger log = Logger.getLogger(InboundAuthHandler.class);
     private String activeDirectory = "server/storage/";
     private final String rootServerDirectory = "server/storage/";
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
+    Stage currentStage = Stage.WAITING;
     ByteBuf buf, bufOut;
 
     @Override
@@ -56,12 +58,9 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                 log.info("Trying to auth user " + commandsArray[1] + " with password " + commandsArray[2]);
                 if (authUser(commandsArray[1], commandsArray[2])) {
                     log.info("auth success, flushing message to client");
-                    ByteBuf bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
-                    bufOut.writeByte((byte) 22);
-                    System.out.println(bufOut.toString());
-                    System.out.println(String.valueOf(bufOut));
+                    bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
+                    bufOut.writeByte(Commands.AUTH.getSignalByte());
                     ctx.writeAndFlush(bufOut);
-                    ctx.fireChannelRead(bufOut);
                 } else {
                     ctx.writeAndFlush("Auth fail");
                 }
@@ -78,12 +77,9 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                         System.out.println(e.getMessage());
                         log.error(e.getMessage());
                     }
-                    ByteBuf bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
-                    bufOut.writeByte((byte) 22);
-                    System.out.println(bufOut.toString());
-                    System.out.println(String.valueOf(bufOut));
+                    bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
+                    bufOut.writeByte(Commands.REGISTER.getSignalByte());
                     ctx.writeAndFlush(bufOut);
-                    ctx.fireChannelRead(bufOut);
                 } else {
                     log.error("register fail");
                     ctx.writeAndFlush("register fail");
