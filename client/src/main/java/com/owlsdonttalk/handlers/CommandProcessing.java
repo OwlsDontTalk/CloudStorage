@@ -2,12 +2,14 @@ package com.owlsdonttalk.handlers;
 
 import com.owlsdonttalk.archive.ClientHandler;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,6 +22,7 @@ public class CommandProcessing {
     DataOutputStream out;
     DataInputStream in;
     private final Scanner scanner = new Scanner(System.in);
+    Byte sygnalByte;
 
     public CommandProcessing(DataOutputStream out, DataInputStream in) throws IOException {
         this.out = out;
@@ -105,7 +108,11 @@ public class CommandProcessing {
     private void connectToServer(String login, String password) throws IOException {
         String connectionString = "sauth " + login + " " + password;
         byte[] arr = connectionString.getBytes();
-        this.out.write(arr);
+        out.write(arr);
+        System.out.println(out);
+        System.out.println(in);
+        sygnalByte = in.readByte();
+        System.out.println(sygnalByte);
     }
 
     private void renameLocalFile(String file, String newName) throws IOException {

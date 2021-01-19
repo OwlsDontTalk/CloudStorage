@@ -238,3 +238,416 @@ java.lang.IndexOutOfBoundsException: readerIndex(0) + length(1) exceeds writerIn
 2021-01-19 14:25:37,794 INFO  InboundAuthHandler:51 - String received, working with command: auth
 2021-01-19 14:25:37,794 INFO  InboundAuthHandler:54 - Trying to auth user 1 with password 1
 2021-01-19 14:25:37,795 INFO  InboundAuthHandler:56 - auth success, flushing message to client
+2021-01-19 14:35:35,944 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:35:35,946 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:35:35,957 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:35:35,983 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:35:35,993 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:35:38,465 INFO  InboundAuthHandler:42 - channelRead: input processing started
+2021-01-19 14:35:38,467 INFO  InboundAuthHandler:51 - String received, working with command: auth
+2021-01-19 14:35:38,469 INFO  InboundAuthHandler:54 - Trying to auth user 1 with password 1
+2021-01-19 14:35:38,792 INFO  InboundAuthHandler:56 - auth success, flushing message to client
+2021-01-19 14:38:24,334 INFO  InboundAuthHandler:37 - Client disconnect
+2021-01-19 14:38:26,065 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:38:26,067 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:38:26,078 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:38:26,099 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:38:26,102 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:38:28,806 INFO  InboundAuthHandler:42 - channelRead: input processing started
+2021-01-19 14:38:28,807 INFO  InboundAuthHandler:51 - String received, working with command: auth
+2021-01-19 14:38:28,807 INFO  InboundAuthHandler:54 - Trying to auth user 1 with password 1
+2021-01-19 14:38:28,808 INFO  InboundAuthHandler:56 - auth success, flushing message to client
+2021-01-19 14:38:33,078 INFO  InboundAuthHandler:37 - Client disconnect
+2021-01-19 14:38:50,418 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:38:50,421 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:38:50,431 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:38:50,449 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:38:50,459 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:38:54,053 INFO  InboundAuthHandler:42 - channelRead: input processing started
+2021-01-19 14:38:54,055 INFO  InboundAuthHandler:51 - String received, working with command: auth
+2021-01-19 14:38:54,057 INFO  InboundAuthHandler:54 - Trying to auth user 1 with password 1
+2021-01-19 14:38:54,252 INFO  InboundAuthHandler:56 - auth success, flushing message to client
+2021-01-19 14:43:29,756 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:43:29,759 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:43:29,770 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:43:29,794 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:43:29,804 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:43:32,586 INFO  InboundAuthHandler:42 - channelRead: input processing started
+2021-01-19 14:43:32,588 INFO  InboundAuthHandler:51 - String received, working with command: auth
+2021-01-19 14:43:32,591 INFO  InboundAuthHandler:54 - Trying to auth user 1 with password 1
+2021-01-19 14:43:33,100 INFO  InboundAuthHandler:56 - auth success, flushing message to client
+2021-01-19 14:44:17,941 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:44:17,943 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:44:17,956 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:44:17,980 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:44:17,994 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:44:21,099 INFO  InboundAuthHandler:42 - channelRead: input processing started
+2021-01-19 14:44:21,100 INFO  InboundAuthHandler:51 - String received, working with command: auth
+2021-01-19 14:44:21,103 INFO  InboundAuthHandler:54 - Trying to auth user 1 with password 1
+2021-01-19 14:44:21,273 INFO  InboundAuthHandler:56 - auth success, flushing message to client
+2021-01-19 14:44:49,920 INFO  InboundAuthHandler:37 - Client disconnect
+2021-01-19 14:44:54,044 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:44:54,046 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:44:54,057 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:44:54,109 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:44:54,115 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@763d9750 connected to server
+2021-01-19 14:44:58,802 INFO  InboundAuthHandler:42 - channelRead: input processing started
+2021-01-19 14:44:58,802 INFO  InboundAuthHandler:51 - String received, working with command: auth
+2021-01-19 14:44:58,802 INFO  InboundAuthHandler:54 - Trying to auth user 1 with password 1
+2021-01-19 14:44:58,804 INFO  InboundAuthHandler:56 - auth success, flushing message to client
+2021-01-19 14:45:24,066 INFO  InboundAuthHandler:37 - Client disconnect
+2021-01-19 14:49:59,683 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:49:59,685 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:49:59,706 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:49:59,778 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@763d9750 connected to server
+2021-01-19 14:49:59,797 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:50:02,004 INFO  InboundAuthHandler:37 - Client disconnect
+2021-01-19 14:50:03,076 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:50:03,079 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:50:03,092 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:50:03,101 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:50:03,104 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:50:06,806 INFO  InboundAuthHandler:42 - channelRead: input processing started
+2021-01-19 14:50:06,807 INFO  InboundAuthHandler:51 - String received, working with command:       11
+2021-01-19 14:51:18,746 INFO  InboundAuthHandler:37 - Client disconnect
+2021-01-19 14:51:20,468 INFO  ClientHandler:32 - command line interface started
+2021-01-19 14:51:20,470 INFO  ClientHandler:36 - reading property file
+2021-01-19 14:51:20,482 INFO  ClientHandler:41 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:51:20,505 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:51:20,508 INFO  ClientHandler:52 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:51:23,333 INFO  InboundAuthHandler:42 - channelRead: input processing started
+2021-01-19 14:51:23,334 INFO  InboundAuthHandler:51 - String received, working with command: auth
+2021-01-19 14:51:23,337 INFO  InboundAuthHandler:54 - Trying to auth user 1 with password 1
+2021-01-19 14:51:23,654 INFO  InboundAuthHandler:56 - auth success, flushing message to client
+2021-01-19 14:55:47,872 INFO  ClientHandler:33 - command line interface started
+2021-01-19 14:55:47,874 INFO  ClientHandler:37 - reading property file
+2021-01-19 14:55:47,884 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:55:47,907 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:55:47,916 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:56:47,315 INFO  InboundAuthHandler:38 - Client disconnect
+2021-01-19 14:57:02,813 INFO  ClientHandler:33 - command line interface started
+2021-01-19 14:57:02,814 INFO  ClientHandler:37 - reading property file
+2021-01-19 14:57:02,825 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:57:02,840 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 14:57:02,842 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:57:08,625 INFO  ClientHandler:33 - command line interface started
+2021-01-19 14:57:08,628 INFO  ClientHandler:37 - reading property file
+2021-01-19 14:57:08,640 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 14:57:08,660 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 14:57:08,673 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 15:00:53,154 INFO  ClientHandler:33 - command line interface started
+2021-01-19 15:00:53,157 INFO  ClientHandler:37 - reading property file
+2021-01-19 15:00:53,177 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 15:00:53,215 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 15:00:53,272 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 15:01:00,347 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 1048576: 1935766904 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:513)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:491)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.exceededFrameLength(LengthFieldBasedFrameDecoder.java:378)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:421)
+	at io.netty.handler.codec.serialization.ObjectDecoder.decode(ObjectDecoder.java:69)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:334)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:505)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:444)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:283)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 16:11:59,449 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:367)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:398)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:247)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1147)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:347)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 16:11:59,469 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-19 16:12:01,471 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:12:01,474 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:12:01,485 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:12:01,572 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:12:01,574 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:12:03,949 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 1048576: 1935766904 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:513)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:491)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.exceededFrameLength(LengthFieldBasedFrameDecoder.java:378)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:421)
+	at io.netty.handler.codec.serialization.ObjectDecoder.decode(ObjectDecoder.java:69)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:334)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:505)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:444)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:283)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 16:21:19,515 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:367)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:398)
+	at io.netty.buffer.PooledByteBuf.setBytes(PooledByteBuf.java:247)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1147)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:347)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 16:21:19,517 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-19 16:21:21,475 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:21:21,477 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:21:21,488 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:21:21,511 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:21:21,514 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:21:24,540 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 1048576: 1935766904 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:513)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:491)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.exceededFrameLength(LengthFieldBasedFrameDecoder.java:378)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:421)
+	at io.netty.handler.codec.serialization.ObjectDecoder.decode(ObjectDecoder.java:69)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:334)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:505)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:444)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:283)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 16:22:15,355 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-19 16:22:17,752 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:22:17,756 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:22:17,775 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:22:17,796 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:22:17,801 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:23:25,500 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 1048576: 1935766904 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:513)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:491)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.exceededFrameLength(LengthFieldBasedFrameDecoder.java:378)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:421)
+	at io.netty.handler.codec.serialization.ObjectDecoder.decode(ObjectDecoder.java:69)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:334)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:505)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:444)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:283)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 16:23:37,238 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-19 16:23:39,302 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:23:39,304 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:23:39,318 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:23:39,348 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:23:39,351 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:23:41,474 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 1048576: 1935766904 - discarded
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.fail(LengthFieldBasedFrameDecoder.java:513)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.failIfNecessary(LengthFieldBasedFrameDecoder.java:491)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.exceededFrameLength(LengthFieldBasedFrameDecoder.java:378)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:421)
+	at io.netty.handler.codec.serialization.ObjectDecoder.decode(ObjectDecoder.java:69)
+	at io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode(LengthFieldBasedFrameDecoder.java:334)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:505)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:444)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:283)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-01-19 16:24:10,111 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:24:10,113 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:24:10,126 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:24:12,222 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:24:12,232 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:24:14,275 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 16:24:14,277 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 16:24:14,279 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-19 16:24:14,482 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 16:24:26,240 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-19 16:24:27,968 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:24:27,969 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:24:27,979 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:24:27,994 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:24:27,996 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:24:30,680 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 16:24:30,681 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 16:24:30,681 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-19 16:24:30,682 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 16:24:53,428 INFO  InboundAuthHandler:39 - Client disconnect
+2021-01-19 16:24:56,049 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:24:56,051 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:24:56,070 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:24:56,097 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:24:56,100 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:24:59,895 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 16:24:59,895 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 16:24:59,895 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-19 16:24:59,897 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 16:25:30,983 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:25:30,985 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:25:30,997 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:25:31,025 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:25:31,042 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:25:33,310 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 16:25:33,312 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 16:25:33,314 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-19 16:25:33,505 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 16:28:48,795 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:28:48,796 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:28:48,808 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:28:48,832 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:29:27,250 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:29:27,252 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:29:27,263 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:29:29,313 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:32:13,051 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:32:13,053 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:32:13,064 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:32:13,090 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:32:13,102 INFO  InboundAuthHandler:31 - Client connect
+2021-01-19 16:32:15,982 INFO  InboundAuthHandler:43 - channelRead: input processing started
+2021-01-19 16:32:15,984 INFO  InboundAuthHandler:52 - String received, working with command: auth
+2021-01-19 16:32:15,986 INFO  InboundAuthHandler:55 - Trying to auth user 1 with password 1
+2021-01-19 16:32:16,310 INFO  InboundAuthHandler:57 - auth success, flushing message to client
+2021-01-19 16:33:49,548 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:33:49,551 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:33:49,565 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:33:49,592 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:33:49,604 INFO  InboundAuthHandler:31 - Client connect
+2021-01-19 16:33:55,629 INFO  InboundAuthHandler:43 - channelRead: input processing started
+2021-01-19 16:33:55,631 INFO  InboundAuthHandler:52 - String received, working with command: auth
+2021-01-19 16:33:55,634 INFO  InboundAuthHandler:55 - Trying to auth user 1 with password 1
+2021-01-19 16:33:55,824 INFO  InboundAuthHandler:57 - auth success, flushing message to client
+2021-01-19 16:35:38,330 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:35:38,332 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:35:38,344 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:35:38,368 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:35:38,388 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:35:40,912 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 16:35:40,913 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 16:35:40,916 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-19 16:35:41,111 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 16:36:06,404 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:36:06,406 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:36:06,417 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:36:06,435 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:36:06,446 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:36:08,875 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 16:36:08,877 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 16:36:08,879 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-19 16:36:09,059 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 16:36:35,191 INFO  ClientHandler:33 - command line interface started
+2021-01-19 16:36:35,193 INFO  ClientHandler:37 - reading property file
+2021-01-19 16:36:35,203 INFO  ClientHandler:42 - Server setup. IP: localhost , PORT: 8189
+2021-01-19 16:36:35,220 INFO  ClientHandler:53 - client com.owlsdonttalk.CLI@2db0f6b2 connected to server
+2021-01-19 16:36:35,230 INFO  InboundAuthHandler:32 - Client connect
+2021-01-19 16:36:37,694 INFO  InboundAuthHandler:44 - channelRead: input processing started
+2021-01-19 16:36:37,696 INFO  InboundAuthHandler:53 - String received, working with command: auth
+2021-01-19 16:36:37,698 INFO  InboundAuthHandler:56 - Trying to auth user 1 with password 1
+2021-01-19 16:36:37,869 INFO  InboundAuthHandler:58 - auth success, flushing message to client
+2021-01-19 16:36:37,872 WARN  DefaultChannelPipeline:1164 - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+io.netty.util.IllegalReferenceCountException: refCnt: 0, decrement: 1
+	at io.netty.util.internal.ReferenceCountUpdater.toLiveRealRefCnt(ReferenceCountUpdater.java:74)
+	at io.netty.util.internal.ReferenceCountUpdater.release(ReferenceCountUpdater.java:138)
+	at io.netty.buffer.AbstractReferenceCountedByteBuf.release(AbstractReferenceCountedByteBuf.java:100)
+	at io.netty.util.ReferenceCountUtil.release(ReferenceCountUtil.java:88)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1198)
+	at io.netty.channel.DefaultChannelPipeline.onUnhandledInboundMessage(DefaultChannelPipeline.java:1208)
+	at io.netty.channel.DefaultChannelPipeline$TailContext.channelRead(DefaultChannelPipeline.java:1308)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at com.owlsdonttalk.handlers.in.InboundAuthHandler.channelRead(InboundAuthHandler.java:64)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:352)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1422)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:374)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:360)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:931)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:700)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:635)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:552)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:514)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$6.run(SingleThreadEventExecutor.java:1044)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:832)

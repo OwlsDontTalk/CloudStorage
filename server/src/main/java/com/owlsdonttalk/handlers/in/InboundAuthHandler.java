@@ -30,6 +30,8 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         log.info("Client connect");
+        ctx.writeAndFlush("hello");
+        ctx.fireChannelRead("hello");
     }
 
     @Override
@@ -54,7 +56,12 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                 log.info("Trying to auth user " + commandsArray[1] + " with password " + commandsArray[2]);
                 if (authUser(commandsArray[1], commandsArray[2])) {
                     log.info("auth success, flushing message to client");
-                    ctx.writeAndFlush("Auth success");
+                    ByteBuf bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
+                    bufOut.writeByte((byte) 22);
+                    System.out.println(bufOut.toString());
+                    System.out.println(String.valueOf(bufOut));
+                    ctx.writeAndFlush(bufOut);
+                    ctx.fireChannelRead(bufOut);
                 } else {
                     ctx.writeAndFlush("Auth fail");
                 }
@@ -71,7 +78,12 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                         System.out.println(e.getMessage());
                         log.error(e.getMessage());
                     }
-                    ctx.writeAndFlush("register success");
+                    ByteBuf bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
+                    bufOut.writeByte((byte) 22);
+                    System.out.println(bufOut.toString());
+                    System.out.println(String.valueOf(bufOut));
+                    ctx.writeAndFlush(bufOut);
+                    ctx.fireChannelRead(bufOut);
                 } else {
                     log.error("register fail");
                     ctx.writeAndFlush("register fail");
@@ -108,10 +120,7 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                     out.close();
                     break;
                 }
-
             }
-
-
         }
     }
 
