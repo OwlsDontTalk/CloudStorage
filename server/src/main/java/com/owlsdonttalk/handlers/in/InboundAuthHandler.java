@@ -23,6 +23,8 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
     private static final Logger log = Logger.getLogger(InboundAuthHandler.class);
     private String activeDirectory = "server/storage/";
     private final String rootServerDirectory = "server/storage/";
+    private String user;
+    private boolean isAuthenticated = false;
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
@@ -60,9 +62,13 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                     log.info("auth success, flushing message to client");
                     bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
                     bufOut.writeByte(Commands.AUTH.getSignalByte());
+                    this.user = commandsArray[1];
+                    this.isAuthenticated = true;
                     ctx.writeAndFlush(bufOut);
                 } else {
-                    ctx.writeAndFlush("Auth fail");
+                    bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
+                    bufOut.writeByte(Commands.AUTH.getFailureByte());
+                    ctx.writeAndFlush(bufOut);
                 }
             }
             if (commandsArray[0].equals("reg")) {
@@ -86,24 +92,38 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                 }
             }
         }
-        if ((char) command == 'f') {
+        if (command == Commands.UPLOAD.getSignalByte()) {
+
+            if(!isAuthenticated){
+                bufOut = ByteBufAllocator.DEFAULT.directBuffer(1);
+                bufOut.writeByte(Commands.AUTH.getFailureByte());
+                ctx.writeAndFlush(bufOut);
+                System.out.println("auth to upload");
+                return;
+            }
             //1.
-            log.info("File expected, working with file");
+            System.out.println("File expected, working with file");
 
             //2. receiving filname length
-            int filenameLength = buf.readInt();
-            log.info("[RECEIVED] filename length: " + filenameLength);
+            int filenameLength = -1;
+            if(buf.readableBytes() >= 4){
+                System.out.println("STATE: Get filename length");
+                filenameLength = buf.readInt();
+            }
+           // int filenameLength = buf.readInt();
+
+            System.out.println("[RECEIVED] filename length: " + filenameLength);
 
             //3. receiving file name
             byte[] filename = new byte[filenameLength];
             buf.readBytes(filename);
             String serverFileName = activeDirectory.concat(new String(filename, StandardCharsets.UTF_8));
-            log.info("[RECEIVED] filename: " + serverFileName);
+            System.out.println("[RECEIVED] filename: " + serverFileName);
 
             //4. receiving file size
             //byte[] allBytes = new byte[buf.readableBytes()];
             long size = buf.readLong();
-            log.info("[RECEIVED] readable bytes: " + buf.readableBytes() + ", file size: " + size);
+            System.out.println("[RECEIVED] readable bytes: " + buf.readableBytes() + ", file size: " + size);
 
             //5. receiving file
             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(serverFileName));
@@ -112,7 +132,7 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
                 out.write(buf.readByte());
                 receivedFileLength++;
                 if (size == receivedFileLength) {
-                    log.info("File received");
+                    System.out.println("File received");
                     out.close();
                     break;
                 }
@@ -180,8 +200,6 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-
         return false;
     }
 }

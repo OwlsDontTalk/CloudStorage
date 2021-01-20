@@ -101,19 +101,24 @@ public class CommandProcessing {
     }
 
     private void sendFileToServer(String filename) throws IOException {
+
         Path path = Path.of(activeDirectory + filename);
-        System.out.printf("trying to upload " + filename);
+
+        System.out.println("trying to upload " + filename);
+        System.out.println(filename.length());
+        System.out.println(filename.getBytes());
+        System.out.println(Files.size(path));
+
         out.writeByte(Commands.UPLOAD.getSignalByte());
-        String fileName = path.getFileName().toString();
-        int fileNameLength = fileName.length();
-        out.writeInt(fileNameLength);
-        out.write(fileName.getBytes());
-        long fileSize = Files.size(path);
-        out.writeLong(fileSize);
+        out.writeInt(filename.length());
+        out.write(filename.getBytes());
+        out.writeLong(Files.size(path));
+
         byte[] buf = new byte[256];
         try (InputStream inputStream = new FileInputStream(path.toFile())) {
             int n;
             while ((n = inputStream.read(buf)) != -1) {
+                System.out.println(n);
                 out.write(buf, 0, n);
             }
         }
