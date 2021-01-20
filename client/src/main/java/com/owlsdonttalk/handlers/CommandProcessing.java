@@ -1,6 +1,5 @@
 package com.owlsdonttalk.handlers;
 
-import com.owlsdonttalk.archive.ClientHandler;
 import com.owlsdonttalk.enums.Commands;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -15,16 +14,20 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CommandProcessing {
-    private static final org.apache.log4j.Logger log = Logger.getLogger(ClientHandler.class);
+    private static final org.apache.log4j.Logger log = Logger.getLogger(CommandProcessing.class);
     private String activeDirectory = "client/dir/";
     DataOutputStream out;
     DataInputStream in;
+    FileUploadService fus;
+    FileDownloadService fds;
     private final Scanner scanner = new Scanner(System.in);
     Byte sygnalByte;
 
-    public CommandProcessing(DataOutputStream out, DataInputStream in) throws IOException {
+    public CommandProcessing(DataOutputStream out, DataInputStream in, FileUploadService fus, FileDownloadService fds) throws IOException {
         this.out = out;
         this.in = in;
+        this.fus = fus;
+        this.fds = fds;
         startCommandProcessing();
     }
 
@@ -87,9 +90,16 @@ public class CommandProcessing {
             case ("send"):
                 sendFileToServer(command[1]);
                 break;
+            case ("download"):
+                downloadFileFromServer(command[1]);
+                break;
             default:
                 System.out.println("[SYSTEM] Command not found, try again.");
         }
+    }
+
+    private void downloadFileFromServer(String s) throws IOException {
+        fds.downloadFile(s);
     }
 
 
@@ -101,27 +111,7 @@ public class CommandProcessing {
     }
 
     private void sendFileToServer(String filename) throws IOException {
-
-        Path path = Path.of(activeDirectory + filename);
-
-        System.out.println("trying to upload " + filename);
-        System.out.println(filename.length());
-        System.out.println(filename.getBytes());
-        System.out.println(Files.size(path));
-
-        out.writeByte(Commands.UPLOAD.getSignalByte());
-        out.writeInt(filename.length());
-        out.write(filename.getBytes());
-        out.writeLong(Files.size(path));
-
-        byte[] buf = new byte[256];
-        try (InputStream inputStream = new FileInputStream(path.toFile())) {
-            int n;
-            while ((n = inputStream.read(buf)) != -1) {
-                System.out.println(n);
-                out.write(buf, 0, n);
-            }
-        }
+        fus.sendFile(activeDirectory+filename);
     }
 
     private void connectToServer(String login, String password) throws IOException {

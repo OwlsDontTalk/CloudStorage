@@ -1,8 +1,8 @@
 package com.owlsdonttalk;
 
-import com.owlsdonttalk.archive.ClientHandler;
-import com.owlsdonttalk.enums.Commands;
 import com.owlsdonttalk.handlers.CommandProcessing;
+import com.owlsdonttalk.handlers.FileDownloadService;
+import com.owlsdonttalk.handlers.FileUploadService;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -15,10 +15,12 @@ public class CLI {
     private String username;
     private static String serverIP = "";
     private static int serverPort = -1;
-    private static final org.apache.log4j.Logger log = Logger.getLogger(ClientHandler.class);
+    private String activeDirectory = "client/dir/";
+    private static final org.apache.log4j.Logger log = Logger.getLogger(CommandProcessing.class);
     DataOutputStream out;
     DataInputStream in;
-
+    FileDownloadService fds;
+    FileUploadService fus;
 
     public static void main(String[] args) throws Exception {
         CLI cli = new CLI();
@@ -46,9 +48,11 @@ public class CLI {
         try (Socket socket = new Socket(serverIP, serverPort)) {
             this.out = new DataOutputStream(socket.getOutputStream());
             this.in = new DataInputStream(socket.getInputStream());
+            fds = new FileDownloadService(out, in, activeDirectory);
+            fus = new FileUploadService(out, in);
             System.out.println("Connection to server established");
             log.info("client " + this + " connected to server");
-            CommandProcessing cmd = new CommandProcessing(out, in);
+            CommandProcessing cmd = new CommandProcessing(out, in, fus, fds);
         } catch (IOException e) {
             e.printStackTrace();
         }

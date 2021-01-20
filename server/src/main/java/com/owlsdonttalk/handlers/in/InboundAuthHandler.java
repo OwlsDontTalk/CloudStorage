@@ -1,21 +1,21 @@
 package com.owlsdonttalk.handlers.in;
 
 import com.owlsdonttalk.enums.Commands;
-import com.owlsdonttalk.enums.Stage;
 import com.owlsdonttalk.interfaces.Connectable;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 
+import java.awt.*;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 
 public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements Connectable {
@@ -28,7 +28,9 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
     private Connection conn = null;
     private Statement statement;
     private ResultSet resultSet;
-    Stage currentStage = Stage.WAITING;
+    private long receivedFileLength;
+    private int filenameLength;
+    private long size = 0L;
     ByteBuf buf, bufOut;
 
     @Override
@@ -49,6 +51,7 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
 
         buf = (ByteBuf)msg;
         byte command = buf.readByte();
+        System.out.println(command);
         Long receivedFileLength = 0L;
 
         if ((char) command == 's') {
@@ -105,7 +108,7 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
             System.out.println("File expected, working with file");
 
             //2. receiving filname length
-            int filenameLength = -1;
+            filenameLength = -1;
             if(buf.readableBytes() >= 4){
                 System.out.println("STATE: Get filename length");
                 filenameLength = buf.readInt();
@@ -122,21 +125,41 @@ public class InboundAuthHandler extends ChannelInboundHandlerAdapter implements 
 
             //4. receiving file size
             //byte[] allBytes = new byte[buf.readableBytes()];
-            long size = buf.readLong();
-            System.out.println("[RECEIVED] readable bytes: " + buf.readableBytes() + ", file size: " + size);
+            System.out.println(buf.readableBytes());
+            if(buf.readableBytes() >= 8){
+                size = buf.readLong();
+                System.out.println("[RECEIVED] file size: " + size);
+            }
+
 
             //5. receiving file
             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(serverFileName));
+            receivedFileLength = 0L;
             while (buf.readableBytes() > 0) {
-
-                out.write(buf.readByte());
+                System.out.println(buf.readByte());
                 receivedFileLength++;
                 if (size == receivedFileLength) {
+                    System.out.println(receivedFileLength);
                     System.out.println("File received");
                     out.close();
                     break;
                 }
             }
+        }
+        if (command == Commands.DOWNLOAD.getSignalByte()){
+            System.out.println("Client trying to download file");
+
+            filenameLength = buf.readInt();
+            byte[] filename = new byte[filenameLength];
+            buf.readBytes(filename);
+            String serverFileName = activeDirectory.concat(new String(filename, StandardCharsets.UTF_8));
+            Path path = Paths.get(serverFileName);
+            System.out.println("[DOWNLOAD] filename: " + serverFileName);
+            bufOut = ByteBufAllocator.DEFAULT.directBuffer(8);
+            System.out.println("sending file size: " + Files.size(path));
+            bufOut.writeLong(Files.size(path));
+            FileRegion region = new DefaultFileRegion(path.toFile(), 0, Files.size(path));
+            ctx.writeAndFlush(region);
         }
     }
 
